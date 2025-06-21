@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -18,6 +19,8 @@ public class Libro {
 	private Long id;
 	private String title; //titolo libro
 	private Integer year; //anno di pubblicazione
+	@ManyToMany
+	private List<Autore> listaAutori;
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
 	private List<Recensione> listaRecensioni;
 	
@@ -60,6 +63,14 @@ public class Libro {
 
 	public void setListaRecensioni(List<Recensione> listaRecensioni) {
 		this.listaRecensioni = listaRecensioni;
+	}
+
+	public List<Autore> getListaAutori() {
+		return listaAutori;
+	}
+
+	public void setListaAutori(List<Autore> listaAutori) {
+		this.listaAutori = listaAutori;
 	}
 
 	@Override

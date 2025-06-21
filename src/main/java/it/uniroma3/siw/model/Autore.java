@@ -1,12 +1,14 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Autore {
@@ -20,6 +22,8 @@ public class Autore {
 	private LocalDate dateOfDeath;
 	private String nationality;//forse si può gestire meglio
 	private String picture;//da gestire diversamente
+	@ManyToMany(mappedBy="listaAutori")
+	private List<Libro> listaLibri;
 	
 	public Autore() {
 		
@@ -88,6 +92,14 @@ public class Autore {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public List<Libro> getListaLibri() {
+		return listaLibri;
+	}
+
+	public void setListaLibri(List<Libro> listaLibri) {
+		this.listaLibri = listaLibri;
 	}
 
 	@Override

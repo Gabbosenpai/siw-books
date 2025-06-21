@@ -65,6 +65,14 @@ public class Recensione {
 	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
+	
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
 
 	@Override
 	public int hashCode() {
