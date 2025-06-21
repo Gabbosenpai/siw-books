@@ -4,34 +4,44 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"firstName","lastName", "dateOfBirth"}))
 public class Autore {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String name;
-	private String surname;
+	@Column(nullable = false)
+	private String firstName;
+	@Column(nullable = false)
+	private String lastName;
+	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+	
 	private LocalDate dateOfDeath;
+	
 	private String nationality;//forse si può gestire meglio
+	
 	private String picture;//da gestire diversamente
-	@ManyToMany(mappedBy="listaAutori")
+	
+	@ManyToMany(mappedBy="listaAutori") //fetch= FetchType.EAGER
 	private List<Libro> listaLibri;
 	
-	public Autore() {
-		
-	}
+	public Autore() {}
 	
-	public Autore(String name, String surname, LocalDate dateOfBirth, LocalDate dateOfDeath, String nationality, String picture) {
-		this.name = name;
-		this.surname = surname;
+	public Autore(String firstName, String lastName, LocalDate dateOfBirth, LocalDate dateOfDeath, String nationality, String picture) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfDeath = dateOfDeath;
 		this.nationality = nationality;
@@ -46,20 +56,20 @@ public class Autore {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public LocalDate getDateOfBirth() {
@@ -104,7 +114,7 @@ public class Autore {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dateOfBirth, name, surname);
+		return Objects.hash(dateOfBirth, firstName, lastName);
 	}
 
 	@Override
@@ -116,8 +126,8 @@ public class Autore {
 		if (getClass() != obj.getClass())
 			return false;
 		Autore other = (Autore) obj;
-		return Objects.equals(dateOfBirth, other.dateOfBirth) && Objects.equals(name, other.name)
-				&& Objects.equals(surname, other.surname);
+		return Objects.equals(dateOfBirth, other.dateOfBirth) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName);
 	}
 	
 	

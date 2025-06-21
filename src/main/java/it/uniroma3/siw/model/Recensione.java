@@ -2,6 +2,7 @@ package it.uniroma3.siw.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,17 +17,20 @@ public class Recensione {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	private String title;
+	
+	@Column(length = 2000)
 	private String text;
+	
 	@Min(1)
 	@Max(5)
 	private Integer rating;
+	
 	@ManyToOne()
 	private Libro libro;
 
-	public Recensione() {
-		
-	}
+	public Recensione() {}
 	
 	public Recensione(String title, String text, Integer rating) {
 		this.title = title;

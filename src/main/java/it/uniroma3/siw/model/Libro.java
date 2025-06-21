@@ -4,29 +4,36 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"title", "year"}))
 public class Libro {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private String title; //titolo libro
-	private Integer year; //anno di pubblicazione
-	@ManyToMany
+	@Column(nullable = false)
+	private Integer year;//anno di pubblicazione
+	
+	@ManyToMany //fetch= FetchType.EAGER
 	private List<Autore> listaAutori;
+	
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
 	private List<Recensione> listaRecensioni;
 	
-	public Libro() {
-		
-	}
+	public Libro() {}
 	
 	public Libro(String title, Integer year) {
 		this.year = year;
