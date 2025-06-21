@@ -1,11 +1,14 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Libro {
@@ -15,7 +18,8 @@ public class Libro {
 	private Long id;
 	private String title; //titolo libro
 	private Integer year; //anno di pubblicazione
-	
+	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
+	private List<Recensione> listaRecensioni;
 	
 	public Libro() {
 		
@@ -48,6 +52,14 @@ public class Libro {
 
 	public void setYear(Integer year) {
 		this.year = year;
+	}
+
+	public List<Recensione> getListaRecensioni() {
+		return listaRecensioni;
+	}
+
+	public void setListaRecensioni(List<Recensione> listaRecensioni) {
+		this.listaRecensioni = listaRecensioni;
 	}
 
 	@Override
