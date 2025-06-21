@@ -22,4 +22,7 @@ public class RecensioneService {
 		return (List<Recensione>)this.recensioneRepository.findAll();
 	}
 	
+	public Recensione save(Recensione recensione) {
+		return this.recensioneRepository.save(recensione);
+	}
 }

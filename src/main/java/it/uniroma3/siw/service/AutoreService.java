@@ -21,4 +21,8 @@ public class AutoreService {
 	public List<Autore> getAllAutori(){
 		return (List<Autore>)this.autoreRepository.findAll();
 	}
+	
+	public Autore save(Autore autore) {
+		return this.autoreRepository.save(autore);
+	}
 }
