@@ -2,30 +2,35 @@ package it.uniroma3.siw.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
+@Entity
 public class Recensione {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title;
-	private String description;
+	private String text;
 	@Min(1)
 	@Max(5)
 	private Integer rating;
+	@ManyToOne()
+	private Libro libro;
 
 	public Recensione() {
 		
 	}
 	
-	public Recensione(String title, String description, Integer rating) {
+	public Recensione(String title, String text, Integer rating) {
 		this.title = title;
-		this.description = description;
+		this.text = text;
 		this.rating = rating;
 	}
 
@@ -45,12 +50,12 @@ public class Recensione {
 		this.title = title;
 	}
 
-	public String getDescroption() {
-		return description;
+	public String getText() {
+		return text;
 	}
 
-	public void setDescroption(String descroption) {
-		this.description = descroption;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public Integer getRating() {
@@ -63,7 +68,7 @@ public class Recensione {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, rating, title);
+		return Objects.hash(text, rating, title);
 	}
 
 	@Override
@@ -75,7 +80,7 @@ public class Recensione {
 		if (getClass() != obj.getClass())
 			return false;
 		Recensione other = (Recensione) obj;
-		return Objects.equals(description, other.description) && Objects.equals(rating, other.rating)
+		return Objects.equals(text, other.text) && Objects.equals(rating, other.rating)
 				&& Objects.equals(title, other.title);
 	}
 	
