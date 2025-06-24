@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="/images/Siw-Books-Cut-Logo.png">
+        <title>Siw Books</title>
+        <link rel="stylesheet" href="">       
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav-links">
+                    <a href="/"><img src="/images/Siw-Books-Cut-Logo.png" alt="logo" title="Home"
+                        height="10%" width="10%" class="logo">
+                    </a>               
+                    <a href="/pizza" style="text-decoration:none">Books</a>
+                </div>
+                <div th:if="${userDetails}">
+                    <span th:text="${nickname}"></span>
+                    <a href="/logout" style="text-decoration:none">Logout</a>
+                </div>
+                <div th:unless="${userDetails}">
+                    <a href="/login" style="text-decoration:none">Login</a>
+                </div>
+            </nav>
+         </header>
+    </body>
+</html>
