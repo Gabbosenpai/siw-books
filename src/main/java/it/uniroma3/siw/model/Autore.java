@@ -7,6 +7,8 @@ import java.util.Objects;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +32,7 @@ public class Autore {
 	
 	private LocalDate dateOfDeath;
 	
+	@Enumerated(EnumType.STRING)
 	private Nationality nationality;//forse si può gestire meglio
 	
 	private String picture;//da gestire diversamente
