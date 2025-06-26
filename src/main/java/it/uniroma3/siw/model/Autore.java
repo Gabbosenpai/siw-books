@@ -30,7 +30,7 @@ public class Autore {
 	
 	private LocalDate dateOfDeath;
 	
-	private String nationality;//forse si può gestire meglio
+	private Nationality nationality;//forse si può gestire meglio
 	
 	private String picture;//da gestire diversamente
 	
@@ -39,7 +39,7 @@ public class Autore {
 	
 	public Autore() {}
 	
-	public Autore(String firstName, String lastName, LocalDate dateOfBirth, LocalDate dateOfDeath, String nationality, String picture) {
+	public Autore(String firstName, String lastName, LocalDate dateOfBirth, LocalDate dateOfDeath, Nationality nationality, String picture) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
@@ -88,11 +88,11 @@ public class Autore {
 		this.dateOfDeath = dateOfDeath;
 	}
 
-	public String getNationality() {
+	public Nationality getNationality() {
 		return nationality;
 	}
 
-	public void setNationality(String nationality) {
+	public void setNationality(Nationality nationality) {
 		this.nationality = nationality;
 	}
 
