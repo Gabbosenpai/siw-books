@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dettaglio Autore</title>
+  <link rel="stylesheet" href="/css/autore.css">
+</head>
+<body>
+  <div class="container">
+    <div class="foto-autore">
+      <img th:src="@{${autore.picture}}" alt="Foto di [[${autore.firstName}]] [[${autore.lastName}]]" />
+    </div>
+    <div class="info-autore">
+      <div class="nome-autore" th:text="${autore.firstName} + ' ' + ${autore.lastName}">Nome Cognome</div>
+      <div class="date-autore" th:text="'Date of Birth: ' + ${#temporals.format(autore.dateOfBirth, 'dd MMMM yyyy')}">Nato: 01 Gennaio 1900</div>
+      <div class="date-autore" th:if="${autore.dateOfDeath != null}" th:text="'Date of Death: ' + ${#temporals.format(autore.dateOfDeath, 'dd MMMM yyyy')}">Morto: 01 Gennaio 2000</div>
+      <div class="nazionalita-autore" th:text="'Nationality: ' + ${autore.nationality.getFullName}">Nazionalità: ITA</div>
+    </div>
+  </div>
+</body>
+</html>

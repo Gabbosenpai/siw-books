@@ -1,0 +1,70 @@
+:root {
+	--light-lavender: #BA87DE; /* light lavender */
+	--dark-lavender: #8D5EB7; /* dark lavender */
+	--purple: #6A0DAD; /* purple */
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: var(--light-lavender);
+	margin: 0;
+	padding: 2%;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 2%;
+	font-size: 2rem;
+}
+
+.autori-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2%;
+	padding: 1%;
+}
+
+.autore-card {
+	background-color: var(--dark-lavender);
+	/* Lilla scuro per il background della card */
+	border-radius: 1rem;
+	overflow: hidden;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+	text-align: center;
+	transition: transform 0.2s ease;
+}
+
+.autore-card:hover {
+	transform: scale(1.03);
+}
+
+.autore-card img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	max-height: 250px;
+	border-bottom: 2px solid var(--purple);
+	/* linea viola sotto l’immagine, opzionale */
+}
+
+.autore-name {
+	margin: 0; /* Nessuno spazio esterno */
+	padding: 1.0rem 0.5rem;
+	font-size: 1rem;
+	font-weight: bold;
+	color: var(--purple); /* viola per il nome */
+	text-align: center;
+	min-height: 5rem; /* garantisce altezza sufficiente */
+	line-height: 1.2;
+	word-break: break-word; /* spezza parole lunghe */
+	overflow-wrap: break-word; /* compatibilità maggiore */
+	white-space: normal; /* consente il wrapping */
+}
+
+.nationality {
+	font-weight: normal; /* magari meno pesante */
+	font-size: 0.85rem; /* un po' più piccolo */
+	display: block;
+	margin-top: 0.2rem;
+	color: var(--purple);
+}
