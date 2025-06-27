@@ -47,3 +47,13 @@ INSERT INTO libro(title, year) VALUES ('The Stranger', 1942);
 INSERT INTO libro(title, year) VALUES ('The Plague', 1947);
 INSERT INTO libro(title, year) VALUES ('The Fall', 1956);
 INSERT INTO libro(title, year) VALUES ('The Myth of Sisyphus', 1942);
+
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Baolo', 'baolo@gmail.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$10$F605H0XOC06ODyI.oQnCzeMWpWRPNOH2DM2Lmf.ZSAkNrTG6Kqa3q', 'DEFAULT', 'baolo',currval('users_seq'));
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Capo Supremo', 'admin@admin.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$Lzmhtr/JjTVh8zJF.6h6IOswJfrt.zmuS3yjvjZW999TJdDoRroQu', 'ADMIN', 'admin',currval('users_seq'));
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Gabbo Matto','gab@gmail.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$PQe2m5BJW1AFWQPx0mNo0.RLn9ovbRE80FL/jBxQXK7g22bQmQ/XK', 'DEFAULT', 'gabbo',currval('users_seq'));
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Michelino Piratino', 'mic@gmail.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$h1htYATmLrimpuKOSoJ2yep8Gdzbc0rnahtUM73/qJQB82kGXJCuW', 'DEFAULT', 'michelino',currval('users_seq'));
+

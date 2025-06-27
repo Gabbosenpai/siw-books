@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="icon" type="image/png" href="/images/Siw-Books-Cut-Logo.png">
-        <title>Siw Books</title>
-        <link rel="stylesheet" href="">       
-    </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Siw Books</title>
+		<link rel="icon" type="image/png" href="/images/Siw-Books-Cut-Logo.png" />
+		<link rel="stylesheet" href="/css/homepage.css">
+</head>
 
-    <body>
-        <header>
-            <nav class="navbar">
-                <div class="nav-links">
-                    <a href="/"><img src="/images/Siw-Books-Cut-Logo.png" alt="logo" title="Home"
-                        height="10%" width="10%" class="logo">
-                    </a>               
-                    <a href="/pizza" style="text-decoration:none">Books</a>
-                </div>
-                <div th:if="${userDetails}">
-                    <span th:text="${nickname}"></span>
-                    <a href="/logout" style="text-decoration:none">Logout</a>
-                </div>
-                <div th:unless="${userDetails}">
-                    <a href="/login" style="text-decoration:none">Login</a>
-                </div>
-            </nav>
-         </header>
-    </body>
+<body>
+  <header>
+    <div class="nav-left">
+      <a href="/">
+        <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" title="Home" class="logo" />
+      </a>
+    </div>
+    <div class="nav-right">
+      <div th:if="${userDetails}">
+        <span th:text="${nickname}">Username</span>
+        <a href="/logout">Logout</a>
+      </div>
+      <div th:unless="${userDetails}">
+        <a href="/login">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="center-links">
+      <a href="/libro">Books</a>
+      <a href="/autore">Authors</a>
+      <a href="/recensione">Reviews</a>
+    </div>
+  </main>
+</body>
 </html>

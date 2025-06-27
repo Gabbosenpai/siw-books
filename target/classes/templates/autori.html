@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autori</title>
+    <link rel="stylesheet" href="/css/autori.css">
+</head>
+<body>
+    <h1>Autori</h1>
+    <div class="autori-grid">
+        <div class="autore-card" th:each="autore : ${autori}">
+        	<a th:href="@{'/autore' + '/' +${autore.id}}">
+        		<img th:src="@{${autore.picture}}" alt="Foto di [[${autore.firstName}]] [[${autore.lastName}]]">
+   		    </a>
+            <div class="autore-name">
+                <span th:text="${autore.firstName} + ' ' + ${autore.lastName}"></span><br>
+  				<span class="nationality" th:text="'(' + ${autore.nationality} + ')'"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

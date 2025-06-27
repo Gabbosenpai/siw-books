@@ -1,0 +1,85 @@
+:root {
+	--light-lavender: #BA87DE;
+	--dark-lavender: #8D5EB7;
+	--purple: #6A0DAD;
+	--font-family: Arial, sans-serif;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-family);
+	background-color: var(--light-lavender);
+	color: var(--purple);
+	padding: 2%;
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	box-sizing: border-box;
+}
+
+.container {
+	background-color: var(--dark-lavender);
+	border-radius: 1rem;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+	display: flex;
+	max-width: 900px;
+	width: 100%;
+	padding: 1rem;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.foto-autore {
+	flex: 1 1 40%;
+	max-width: 40%;
+	border-radius: 1rem;
+	overflow: hidden;
+}
+
+.foto-autore img {
+	width: 100%;
+	height: auto;
+	display: block;
+	object-fit: cover;
+	border-radius: 1rem;
+	box-shadow: 0 0 10px var(--purple);
+}
+
+.info-autore {
+	flex: 1 1 55%;
+	max-width: 55%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 1rem;
+	box-sizing: border-box;
+}
+
+.nome-autore {
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	text-align: left;
+}
+
+.date-autore, .nazionalita-autore {
+	font-size: 1.2rem;
+	margin-bottom: 0.3rem;
+}
+
+@media ( max-width : 700px) {
+	.container {
+		flex-direction: column;
+	}
+	.foto-autore, .info-autore {
+		max-width: 100%;
+		flex-basis: 100%;
+	}
+	.nome-autore {
+		text-align: center;
+	}
+	.info-autore {
+		padding: 0;
+		margin-top: 1rem;
+	}
+}
