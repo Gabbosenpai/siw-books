@@ -29,4 +29,6 @@ public class ImmagineAutoreService {
     public List<ImmagineAutore> getAllImmaginiAutori(){
 		return (List<ImmagineAutore>) this.immagineAutoreRepository.findAll();
 	}
+    
+    
 }
