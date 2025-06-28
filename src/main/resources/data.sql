@@ -1,21 +1,21 @@
 ALTER TABLE autore ALTER COLUMN id SET DEFAULT nextval('autore_seq');
 ALTER TABLE libro ALTER COLUMN id SET DEFAULT nextval('libro_seq');
 
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('George', 'Orwell', '1903-06-25', '1950-01-21', 'GBR', '/images/writers/George_Orwell.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Haruki', 'Murakami', '1949-01-12', NULL, 'JPN', '/images/writers/Haruki_Murakami.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Jane', 'Austen', '1775-12-16', '1817-07-18', 'GBR', '/images/writers/Jane_Austen.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Fyodor', 'Dostoevsky', '1821-11-11', '1881-02-09', 'RUS', '/images/writers/Fyodor_Dostoevsky.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Joanne Kathleen', 'Rowling', '1965-07-31', NULL, 'GBR', '/images/writers/J_K_Rowling.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Gabriel', 'García Márquez', '1927-03-06', '2014-04-17', 'COL', '/images/writers/Gabriel_Garcia_Marquez.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Stephen', 'King', '1947-09-21', NULL, 'USA', '/images/writers/Stephen_King.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Margaret', 'Atwood', '1939-11-18', NULL, 'CAN', '/images/writers/Margaret_Atwood.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Umberto', 'Eco', '1932-01-05', '2016-02-19', 'ITA', '/images/writers/Umberto_Eco.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Chimamanda Ngozi', 'Adichie', '1977-09-15', NULL, 'NGA', '/images/writers/Chimamanda_Ngozi_Adichie.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Lev', 'Tolstoy', '1828-09-09', '1910-11-20', 'RUS', '/images/writers/Lev_Tolstoy.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Franz', 'Kafka', '1883-07-03', '1924-06-03', 'CZE', '/images/writers/Franz_Kafka.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Italo', 'Calvino', '1923-10-15', '1985-09-19', 'ITA', '/images/writers/Italo_Calvino.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Isabel', 'Allende', '1942-08-02', NULL, 'CHL', '/images/writers/Isabel_Allende.jpg');
-INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, picture) VALUES ('Albert', 'Camus', '1913-11-07', '1960-01-04', 'FRA', '/images/writers/Albert_Camus.jpg');
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('George', 'Orwell', '1903-06-25', '1950-01-21', 'GBR', 1);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Haruki', 'Murakami', '1949-01-12', NULL, 'JPN', 2);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Jane', 'Austen', '1775-12-16', '1817-07-18', 'GBR', 3);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Fyodor', 'Dostoevsky', '1821-11-11', '1881-02-09', 'RUS', 4);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Joanne Kathleen', 'Rowling', '1965-07-31', NULL, 'GBR', 5);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Gabriel', 'García Márquez', '1927-03-06', '2014-04-17', 'COL', 6);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Stephen', 'King', '1947-09-21', NULL, 'USA', 7);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Margaret', 'Atwood', '1939-11-18', NULL, 'CAN', 8);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Umberto', 'Eco', '1932-01-05', '2016-02-19', 'ITA', 9);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Chimamanda Ngozi', 'Adichie', '1977-09-15', NULL, 'NGA', 10);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Lev', 'Tolstoy', '1828-09-09', '1910-11-20', 'RUS', 11);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Franz', 'Kafka', '1883-07-03', '1924-06-03', 'CZE', 12);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Italo', 'Calvino', '1923-10-15', '1985-09-19', 'ITA', 13);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Isabel', 'Allende', '1942-08-02', NULL, 'CHL', 14);
+INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Albert', 'Camus', '1913-11-07', '1960-01-04', 'FRA', 15);
 
 INSERT INTO libro(title, year) VALUES ('1984', 1949);
 INSERT INTO libro(title, year) VALUES ('Animal Farm', 1945);
