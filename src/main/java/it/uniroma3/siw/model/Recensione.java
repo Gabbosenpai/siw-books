@@ -18,13 +18,16 @@ public class Recensione {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String title;
 	
-	@Column(length = 2000)
+	@Column(length = 2000, nullable = false)
+	
 	private String text;
 	
 	@Min(1)
 	@Max(5)
+	@Column(nullable = false)
 	private Integer rating;
 	
 	@ManyToOne()
@@ -75,7 +78,10 @@ public class Recensione {
 	}
 
 	public void setLibro(Libro libro) {
-		this.libro = libro;
+	    this.libro = libro;
+	    if(libro != null && !libro.getListaRecensioni().contains(this)) {
+	        libro.getListaRecensioni().add(this);
+	    }
 	}
 
 	@Override

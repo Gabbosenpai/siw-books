@@ -1,6 +1,7 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,10 +10,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
@@ -23,32 +26,49 @@ public class Autore {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	@Column(nullable = false)
 	private String firstName;
+	
 	@Column(nullable = false)
 	private String lastName;
+	
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 	
+	@Column(nullable = true)
 	private LocalDate dateOfDeath;
 	
 	@Enumerated(EnumType.STRING)
 	private Nationality nationality;//forse si può gestire meglio
 	
-	private String picture;//da gestire diversamente
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	private ImmagineAutore immagine;
 	
-	@ManyToMany(mappedBy="listaAutori", cascade = CascadeType.ALL) //fetch= FetchType.EAGER
-	private List<Libro> listaLibri;
+	@ManyToMany(mappedBy="listaAutori", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.EAGER) 
+	private List<Libro> listaLibri = new ArrayList<>();
 	
 	public Autore() {}
 	
-	public Autore(String firstName, String lastName, LocalDate dateOfBirth, LocalDate dateOfDeath, Nationality nationality, String picture) {
+	public Autore(String firstName, String lastName, LocalDate dateOfBirth, LocalDate dateOfDeath, Nationality nationality) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfDeath = dateOfDeath;
 		this.nationality = nationality;
-		this.picture = picture;
+	}
+	
+	public void addLibro(Libro libro) {
+	    if (libro != null && !listaLibri.contains(libro)) {
+	        listaLibri.add(libro);
+	        libro.getListaAutori().add(this);
+	    }
+	}
+
+	public void removeLibro(Libro libro) {
+	    if (libro != null && listaLibri.remove(libro)) {
+	        libro.getListaAutori().remove(this);
+	    }
 	}
 
 	public Long getId() {
@@ -98,21 +118,23 @@ public class Autore {
 	public void setNationality(Nationality nationality) {
 		this.nationality = nationality;
 	}
-
-	public String getPicture() {
-		return picture;
+	
+	public ImmagineAutore getImmagine() {
+	    return immagine;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setImmagine(ImmagineAutore immagine) {
+	    if (this.immagine != null) {
+	        this.immagine.setAutore(null);
+	    }
+	    this.immagine = immagine;
+	    if (immagine != null) {
+	        immagine.setAutore(this);
+	    }
 	}
 
 	public List<Libro> getListaLibri() {
 		return listaLibri;
-	}
-
-	public void setListaLibri(List<Libro> listaLibri) {
-		this.listaLibri = listaLibri;
 	}
 
 	@Override
