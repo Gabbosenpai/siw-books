@@ -52,7 +52,8 @@ public class AuthConfiguration {
 		.authorizeHttpRequests(auth -> auth
 				// .requestMatchers("/**").permitAll()
 				// chiunque (autenticato o no) può accedere alle pagine homepage, login, register, ai css, alle immagini e ai font
-				.requestMatchers(HttpMethod.GET, "/", "/homepage", "/register", "/css/**", "/images/**", "/images-db-autore/**", "/images-db-libro/**","/fonts/**", "/autore/**", "/libro/**").permitAll()
+				.requestMatchers(HttpMethod.GET, "/", "/homepage", "/register", "/css/**", "/images/**", "/images-db-autore/**", "/images-db-libro/**",
+												 "/fonts/**", "/autore/**", "/libro", "/libro/{id}", "/recensione/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
 				// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register
 				.requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority(ADMIN_ROLE)

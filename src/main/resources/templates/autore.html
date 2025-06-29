@@ -7,6 +7,29 @@
   <link rel="stylesheet" href="/css/autore.css">
 </head>
 <body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" title="Home">
+                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" width="70" height="70" />
+            </a>
+            <a href="/libro">Books</a>
+            <a href="/autore">Authors</a>
+            <a href="/recensione">Reviews</a>
+        </div>
+
+        <div class="user-block" th:if="${userDetails}">
+            <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+
+        <div class="user-block" th:unless="${userDetails}">
+            <a class="login-link" href="/login">Login</a>
+        </div>
+    </nav>
+</header>
+
   <div class="container">
     <div class="foto-autore">
       <img th:if="${autore.immagine != null}"  

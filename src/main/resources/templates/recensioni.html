@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Recensioni</title>
+    <link rel="stylesheet" th:href="@{/css/recensioni.css}" />
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/"><img src="/images/Siw-Books-Cut-Logo.png" width="70" alt="Logo" /></a>
+        </div>
+
+        <div class="user-area" th:if="${userDetails}">
+            <a class="username" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a href="/logout">Logout</a>
+        </div>
+
+        <div class="user-area" th:unless="${userDetails}">
+            <a href="/login">Login</a>
+        </div>
+    </header>
+
+    <h1>All Reviews</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th th:if="${role == 'ADMIN'}">ID</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Rating</th>
+                <th>Book</th>
+                <th>Reviewer</th>
+                <th th:if="${role == 'ADMIN'}">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="rec : ${recensioni}">
+                <td th:if="${role == 'ADMIN'}" th:text="${rec.id}">1</td>
+                <td th:text="${rec.title}">Titolo recensione</td>
+                <td th:text="${rec.text}">Testo recensione</td>
+                <td th:text="${rec.rating + '/5'}">5</td>
+                <td>
+                    <a th:href="@{/libro/{id}(id=${rec.libro.id})}" th:text="${rec.libro.title}">Titolo Libro</a>
+                </td>
+                <td>
+                    <a th:href="@{/recensione/{username}/recensioni(username=${rec.autore.credentials.username})}" th:text="${rec.autore.nickname}">autore</a>
+                </td>
+                <td th:if="${role == 'ADMIN'}">
+    				<form th:action="@{/recensione/delete}" method="post"
+						th:object="${rec}">
+						<input type="hidden" name="id" th:value="${rec.id}" />
+						<button class="MAD-BUTTON" type="submit"
+							onclick="return confirm('Questa Recensione verrà eliminata per sempre, vuoi continuare lo stesso?');">Elimina</button>
+    				</form>
+				</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

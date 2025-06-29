@@ -1,6 +1,6 @@
 ALTER TABLE autore ALTER COLUMN id SET DEFAULT nextval('autore_seq');
 ALTER TABLE libro ALTER COLUMN id SET DEFAULT nextval('libro_seq');
-
+ALTER TABLE recensione ALTER COLUMN id SET DEFAULT nextval('recensione_seq');
 
 INSERT INTO libro(title, year) VALUES ('1984', 1949);
 INSERT INTO libro(title, year) VALUES ('Animal Farm', 1945);

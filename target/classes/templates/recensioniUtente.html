@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Recensioni di [[${utente.nickname}]]</title>
+    <link rel="stylesheet" href="/css/recensioniUtente.css" />
+</head>
+<body>
+
+<header>
+    <div th:if="${userDetails}">
+        <a class="username" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div th:unless="${userDetails}">
+        <a href="/login">Login</a>
+    </div>
+</header>
+
+<div class="logo">
+    <a href="/"><img src="/images/Siw-Books-Cut-Logo.png" width="70" alt="Logo" /></a>
+</div>
+
+<h1 th:text="'Recensioni di ' + ${utente.nickname}">nickname</h1>
+
+<div th:if="${recensioni.isEmpty()}">
+    <p>Questo utente non ha ancora scritto recensioni.</p>
+</div>
+
+<div th:unless="${recensioni.isEmpty()}">
+    <table>
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="recensione : ${recensioni}">
+                <td> 
+                <a th:href="@{/libro/{id}(id=${recensione.libro.id})}" th:text="${recensione.libro.title}">Nome Libro</a>
+                </td>
+                <td th:text="${recensione.title}">Titolo</td>
+                <td th:text="${recensione.text}">Descrizione</td>
+                <td th:text="${recensione.rating + '/5'}">5</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -14,50 +14,96 @@ body {
   box-sizing: border-box;
 }
 
-header {
-  width: 100%;
-  padding: 2% 5%;
-  background-color: var(--dark-lavender);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
+/* HEADER E NAVBAR */
+
+/* Container principale header e navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--dark-lavender);
+    box-sizing: border-box;
 }
 
-header img {
-  width: 50%;
-  height: auto;
+/* Contenitore logo + link navigazione a sinistra */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 3rem; /* spazio tra logo e link */
 }
 
-nav {
-  width: 100%;
-  background-color: #E0C6FF; /* un lilla chiaro più chiaro */
-  padding: 2% 5%;
-  box-sizing: border-box;
+/* Link del logo (solo immagine) */
+.nav-links a:first-child {
+    display: inline-block;
 }
 
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 5%;
+/* Immagine logo */
+.nav-links img.logo {
+    width: 20em;
+    height: auto;
+    display: block; /* evita spazi sotto l'immagine */
 }
 
-nav ul li a {
-  text-decoration: none;
-  color: var(--purple);
-  font-weight: bold;
-  font-size: 1.2rem; /* puoi cambiarlo in rem o % se vuoi */
+/* Link principali della navbar (escluso il logo) */
+.nav-links a:not(:first-child) {
+    text-decoration: none;
+    color: var(--purple);
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
 }
 
-main {
-  width: 90%;
-  margin: 3% auto;
-  background-color: #E6E6FA; /* un altro lilla chiaro */
-  padding: 3%;
-  box-sizing: border-box;
-  border-radius: 1rem;
-  min-height: 50vh;
+.nav-links a:not(:first-child):hover {
+    color: var(--light-lavender);
+    text-shadow: 1px 1px 2px var(--purple-light);
+}
+
+/* Blocco utente a destra: username e logout/login */
+.user-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Stile per il nickname in pillola */
+.username-pill {
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.username-pill:hover {
+    background-color: var(--purple-light);
+}
+
+/* Link logout e login */
+.logout-link,
+.login-link {
+    color: var(--light-lavender);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover,
+.login-link:hover {
+    color: var(--purple-light);
+}
+
+.welcome-title {
+  font-size: 5rem;             /* scritta molto grande */
+  color: var(--purple);        /* viola acceso */
+  text-align: center;
+  margin-top: 5rem;
+  font-weight: 900;
+  text-shadow: 2px 2px 5px var(--dark-purple);
+  font-family: 'Sauce Tomato', sans-serif; /* se vuoi il font personalizzato */
 }
