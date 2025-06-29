@@ -26,6 +26,10 @@ public class ImmagineLibroService {
         immagineLibroRepository.deleteById(id);
     }
     
+    public void delete(ImmagineLibro immagineLibro) {
+        immagineLibroRepository.delete(immagineLibro);
+    }
+    
     public List<ImmagineLibro> getAllImmaginiLibri(){
 		return (List<ImmagineLibro>) this.immagineLibroRepository.findAll();
 	}

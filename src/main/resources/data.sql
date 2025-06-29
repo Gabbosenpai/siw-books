@@ -1,6 +1,3 @@
-ALTER TABLE autore ALTER COLUMN id SET DEFAULT nextval('autore_seq');
-ALTER TABLE libro ALTER COLUMN id SET DEFAULT nextval('libro_seq');
-
 INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('George', 'Orwell', '1903-06-25', '1950-01-21', 'GBR', 1);
 INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Haruki', 'Murakami', '1949-01-12', NULL, 'JPN', 2);
 INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Jane', 'Austen', '1775-12-16', '1817-07-18', 'GBR', 3);
@@ -17,43 +14,33 @@ INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, national
 INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Isabel', 'Allende', '1942-08-02', NULL, 'CHL', 14);
 INSERT INTO autore(first_name, last_name, date_of_birth, date_of_death, nationality, immagine_id) VALUES ('Albert', 'Camus', '1913-11-07', '1960-01-04', 'FRA', 15);
 
-INSERT INTO libro(title, year) VALUES ('1984', 1949);
-INSERT INTO libro(title, year) VALUES ('Animal Farm', 1945);
-INSERT INTO libro(title, year) VALUES ('Norwegian Wood', 1987);
-INSERT INTO libro(title, year) VALUES ('Kafka on the Shore', 2002);
-INSERT INTO libro(title, year) VALUES ('Pride and Prejudice', 1813);
-INSERT INTO libro(title, year) VALUES ('Emma', 1815);
-INSERT INTO libro(title, year) VALUES ('Crime and Punishment', 1866);
-INSERT INTO libro(title, year) VALUES ('The Brothers Karamazov', 1880);
-INSERT INTO libro(title, year) VALUES ('Harry Potter and the Philosopher''s Stone', 1997);
-INSERT INTO libro(title, year) VALUES ('Harry Potter and the Chamber of Secrets', 1998);
-INSERT INTO libro(title, year) VALUES ('One Hundred Years of Solitude', 1967);
-INSERT INTO libro(title, year) VALUES ('Love in the Time of Cholera', 1985);
-INSERT INTO libro(title, year) VALUES ('The Shining', 1977);
-INSERT INTO libro(title, year) VALUES ('It', 1986);
-INSERT INTO libro(title, year) VALUES ('The Handmaid''s Tale', 1985);
-INSERT INTO libro(title, year) VALUES ('Oryx and Crake', 2003);
-INSERT INTO libro(title, year) VALUES ('The Name of the Rose', 1980);
-INSERT INTO libro(title, year) VALUES ('Foucault''s Pendulum', 1988);
-INSERT INTO libro(title, year) VALUES ('Americanah', 2013);
-INSERT INTO libro(title, year) VALUES ('War and Peace', 1869);
-INSERT INTO libro(title, year) VALUES ('Anna Karenina', 1877);
-INSERT INTO libro(title, year) VALUES ('The Trial', 1925);
-INSERT INTO libro(title, year) VALUES ('The Metamorphosis', 1915);
-INSERT INTO libro(title, year) VALUES ('Invisible Cities', 1972);
-INSERT INTO libro(title, year) VALUES ('If on a winter''s night a traveler', 1979);
-INSERT INTO libro(title, year) VALUES ('The House of the Spirits', 1982);
-INSERT INTO libro(title, year) VALUES ('The Stranger', 1942);
-INSERT INTO libro(title, year) VALUES ('The Plague', 1947);
-INSERT INTO libro(title, year) VALUES ('The Fall', 1956);
-INSERT INTO libro(title, year) VALUES ('The Myth of Sisyphus', 1942);
-
-INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Baolo', 'baolo@gmail.com');
-INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$10$F605H0XOC06ODyI.oQnCzeMWpWRPNOH2DM2Lmf.ZSAkNrTG6Kqa3q', 'DEFAULT', 'baolo',currval('users_seq'));
-INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Capo Supremo', 'admin@admin.com');
-INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$Lzmhtr/JjTVh8zJF.6h6IOswJfrt.zmuS3yjvjZW999TJdDoRroQu', 'ADMIN', 'admin',currval('users_seq'));
-INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Gabbo Matto','gab@gmail.com');
-INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$PQe2m5BJW1AFWQPx0mNo0.RLn9ovbRE80FL/jBxQXK7g22bQmQ/XK', 'DEFAULT', 'gabbo',currval('users_seq'));
-INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Michelino Piratino', 'mic@gmail.com');
-INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$h1htYATmLrimpuKOSoJ2yep8Gdzbc0rnahtUM73/qJQB82kGXJCuW', 'DEFAULT', 'michelino',currval('users_seq'));
-
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (1, 1);    -- 1984 - Orwell
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (1, 51);   -- Animal Farm - Orwell
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (51, 101);  -- Norwegian Wood - Murakami
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (51, 151);  -- Kafka on the Shore - Murakami
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (101, 201);  -- Pride and Prejudice - Austen
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (101, 251);  -- Emma - Austen
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (151, 301);  -- Crime and Punishment - Dostoevsky
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (151, 351);  -- The Brothers Karamazov - Dostoevsky
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (201, 401);  -- Harry Potter and the Philosopher's Stone - Rowling
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (201, 451);  -- Harry Potter and the Chamber of Secrets - Rowling
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (251, 501);  -- One Hundred Years of Solitude - García Márquez
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (251, 551);  -- Love in the Time of Cholera - García Márquez
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (301, 601);  -- The Shining - King
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (301, 651);  -- It - King
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (351, 701);  -- The Handmaid's Tale - Atwood
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (351, 751);  -- Oryx and Crake - Atwood
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (401, 801);  -- The Name of the Rose - Eco
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (401, 851);  -- Foucault's Pendulum - Eco
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (451, 901); -- Americanah - Adichie
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (501, 951); -- War and Peace - Tolstoy
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (501, 1001); -- Anna Karenina - Tolstoy
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (551, 1051); -- The Trial - Kafka
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (551, 1101); -- The Metamorphosis - Kafka
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (601, 1151); -- Invisible Cities - Calvino
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (601, 1201); -- If on a winter's night a traveler - Calvino
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (651, 1251); -- The House of the Spirits - Allende
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (701, 1301); -- The Stranger - Camus
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (701, 1351); -- The Plague - Camus
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (701, 1401); -- The Fall - Camus
+INSERT INTO libro_lista_autori (lista_autori_id, lista_libri_id) VALUES (701, 1451); -- The Myth of Sisyphus - Camus

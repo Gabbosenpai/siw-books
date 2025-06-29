@@ -38,7 +38,7 @@ public class Libro {
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Recensione> listaRecensioni = new ArrayList<>();;
 	
-	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "libro",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImmagineLibro> listaImmagini = new ArrayList<>();;
 	
 	public Libro() {}

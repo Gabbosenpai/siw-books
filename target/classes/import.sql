@@ -1,0 +1,44 @@
+ALTER TABLE autore ALTER COLUMN id SET DEFAULT nextval('autore_seq');
+ALTER TABLE libro ALTER COLUMN id SET DEFAULT nextval('libro_seq');
+
+
+INSERT INTO libro(title, year) VALUES ('1984', 1949);
+INSERT INTO libro(title, year) VALUES ('Animal Farm', 1945);
+INSERT INTO libro(title, year) VALUES ('Norwegian Wood', 1987);
+INSERT INTO libro(title, year) VALUES ('Kafka on the Shore', 2002);
+INSERT INTO libro(title, year) VALUES ('Pride and Prejudice', 1813);
+INSERT INTO libro(title, year) VALUES ('Emma', 1815);
+INSERT INTO libro(title, year) VALUES ('Crime and Punishment', 1866);
+INSERT INTO libro(title, year) VALUES ('The Brothers Karamazov', 1880);
+INSERT INTO libro(title, year) VALUES ('Harry Potter and the Philosopher''s Stone', 1997);
+INSERT INTO libro(title, year) VALUES ('Harry Potter and the Chamber of Secrets', 1998);
+INSERT INTO libro(title, year) VALUES ('One Hundred Years of Solitude', 1967);
+INSERT INTO libro(title, year) VALUES ('Love in the Time of Cholera', 1985);
+INSERT INTO libro(title, year) VALUES ('The Shining', 1977);
+INSERT INTO libro(title, year) VALUES ('It', 1986);
+INSERT INTO libro(title, year) VALUES ('The Handmaid''s Tale', 1985);
+INSERT INTO libro(title, year) VALUES ('Oryx and Crake', 2003);
+INSERT INTO libro(title, year) VALUES ('The Name of the Rose', 1980);
+INSERT INTO libro(title, year) VALUES ('Foucault''s Pendulum', 1988);
+INSERT INTO libro(title, year) VALUES ('Americanah', 2013);
+INSERT INTO libro(title, year) VALUES ('War and Peace', 1869);
+INSERT INTO libro(title, year) VALUES ('Anna Karenina', 1877);
+INSERT INTO libro(title, year) VALUES ('The Trial', 1925);
+INSERT INTO libro(title, year) VALUES ('The Metamorphosis', 1915);
+INSERT INTO libro(title, year) VALUES ('Invisible Cities', 1972);
+INSERT INTO libro(title, year) VALUES ('If on a winter''s night a traveler', 1979);
+INSERT INTO libro(title, year) VALUES ('The House of the Spirits', 1982);
+INSERT INTO libro(title, year) VALUES ('The Stranger', 1942);
+INSERT INTO libro(title, year) VALUES ('The Plague', 1947);
+INSERT INTO libro(title, year) VALUES ('The Fall', 1956);
+INSERT INTO libro(title, year) VALUES ('The Myth of Sisyphus', 1942);
+
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Baolo', 'baolo@gmail.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$10$F605H0XOC06ODyI.oQnCzeMWpWRPNOH2DM2Lmf.ZSAkNrTG6Kqa3q', 'DEFAULT', 'baolo',currval('users_seq'));
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Capo Supremo', 'admin@admin.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$Lzmhtr/JjTVh8zJF.6h6IOswJfrt.zmuS3yjvjZW999TJdDoRroQu', 'ADMIN', 'admin',currval('users_seq'));
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Gabbo Matto','gab@gmail.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$PQe2m5BJW1AFWQPx0mNo0.RLn9ovbRE80FL/jBxQXK7g22bQmQ/XK', 'DEFAULT', 'gabbo',currval('users_seq'));
+INSERT INTO users(id, nickname, email) VALUES(nextval('users_seq'), 'Michelino Piratino', 'mic@gmail.com');
+INSERT INTO credentials(id, password, role, username, user_id) VALUES(nextval('credentials_seq'), '$2a$12$h1htYATmLrimpuKOSoJ2yep8Gdzbc0rnahtUM73/qJQB82kGXJCuW', 'DEFAULT', 'michelino',currval('users_seq'));
+

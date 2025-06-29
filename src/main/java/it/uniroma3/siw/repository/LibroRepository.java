@@ -6,4 +6,6 @@ import it.uniroma3.siw.model.Libro;
 
 public interface LibroRepository extends CrudRepository<Libro, Long> {
 
+	public Libro findByTitle(String title);
+	
 }

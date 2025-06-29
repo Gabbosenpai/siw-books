@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="/css/libri.css">
+</head>
+<body>
+    <h1>Books</h1>
+    <div class="libri-grid">
+        <div class="libro-card" th:each="libro : ${libri}">
+            <a th:href="@{'/libro/' + ${libro.id}}">
+                <img th:if="${!#lists.isEmpty(libro.listaImmagini)}"
+                     th:src="@{'/images-db-libro/' + ${libro.listaImmagini[0].id}}"
+                     th:alt="'Copertina di ' + ${libro.title}">
+            </a>
+            <div class="libro-info">
+                <span th:text="${libro.title}"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
