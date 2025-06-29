@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,7 @@ public class LibroController {
 	}
 	
 	@GetMapping("/libro/{id}")
-	public String getLibro(@PathVariable("id") Long id, Model model) { 
+	public String getLibro(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal UserDetails userDetails) { 
 		Libro libro = this.libroService.getLibroById(id);
 		if(libro == null) {
 			return "notFound.html";
@@ -37,6 +39,18 @@ public class LibroController {
 		Collections.reverse(reversed);
 		libro.setListaRecensioni(reversed);
 		model.addAttribute("libro", libro);
+		boolean haGiaRecensito = false;
+
+		if (userDetails != null) {
+			String username = userDetails.getUsername();
+			for (Recensione rec : libro.getListaRecensioni()) {
+				if (rec.getAutore() != null && rec.getAutore().getCredentials().getUsername().equals(username)) {
+					haGiaRecensito = true;
+					break; // esci appena trovi una corrispondenza
+				}
+			}
+		}
+		model.addAttribute("haGiaRecensito", haGiaRecensito);
 		return "libro.html";
 	}
 	

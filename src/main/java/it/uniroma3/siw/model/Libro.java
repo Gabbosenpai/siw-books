@@ -33,13 +33,13 @@ public class Libro {
 	private Integer year;//anno di pubblicazione
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.EAGER)
-	private List<Autore> listaAutori = new ArrayList<>();;
+	private List<Autore> listaAutori = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Recensione> listaRecensioni = new ArrayList<>();;
+	private List<Recensione> listaRecensioni = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "libro",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ImmagineLibro> listaImmagini = new ArrayList<>();;
+    private List<ImmagineLibro> listaImmagini = new ArrayList<>();
 	
 	public Libro() {}
 	

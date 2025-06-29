@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title th:text="${libro.title} + ' - Dettaglio Libro'">Book Details</title>
-    <link rel="stylesheet" href="/css/libro.css" />
-    <style>
-        .libro-container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            font-family: sans-serif;
-        }
-        .info {
-            margin-bottom: 20px;
-        }
-        .label {
-            font-weight: bold;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 0 5px #aaa;
-            object-fit: cover;
-        }
-        .no-images {
-            color: #777;
-            font-style: italic;
-            margin-top: 10px;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title th:text="${libro.title} + ' - Dettaglio Libro'">Book
+	Details</title>
+<link rel="stylesheet" href="/css/libro.css" />
 </head>
 <body>
 
-<div class="libro-container" th:object="${libro}">
-    <h1 th:text="*{title}">Book Title</h1>
-    
-    <div class="info">
+	<div class="libro-container" th:object="${libro}">
+		<h1 th:text="*{title}">Book Title</h1>
+
+		<div class="info">
+			<p>
+				<span class="label">Autori:</span> <span
+					th:if="*{listaAutori != null and !#lists.isEmpty(listaAutori)}">
+					<span th:each="autore, iterStat : *{listaAutori}"> <span
+						th:text="${autore.firstName + ' ' + autore.lastName}">Nome
+							Autore</span> <span th:if="${!iterStat.last}">, </span>
+				</span>
+				</span> <span th:if="*{listaAutori == null or #lists.isEmpty(listaAutori)}">
+					Nessun autore associato </span>
+			</p>
+			<p>
+				<span class="label">Anno:</span> <span th:text="*{year}">2023</span>
+			</p>
+		</div>
+
+		<div class="gallery"
+			th:if="*{listaImmagini != null and !#lists.isEmpty(listaImmagini)}">
+			<img th:each="img : *{listaImmagini}"
+				th:src="@{'/images-db-libro/' + ${img.id}}"
+				th:alt="'Immagine di ' + *{title}" />
+		</div>
+		<div class="no-images"
+			th:if="*{listaImmagini == null or #lists.isEmpty(listaImmagini)}">
+			Nessuna immagine disponibile per questo libro.</div>
+	</div>
+	<div class="reviews-container">
+	<h1>Reviews</h1>
+
+	<h2 th:if="${haGiaRecensito}">You have already left a review,
+		thank you!</h2>
+	<h2 th:unless="${haGiaRecensito}">
+		<a th:href="@{'/libro/' + ${libro.id} + '/formNewRecensione'}">Leave
+			a review!</a>
+	</h2>
+
+	<div
+		th:if="${libro.listaRecensioni == null || libro.listaRecensioni.isEmpty()}">
+		No reviews yet...</div>
+
+	<ul>
+    <li th:each="recensione : ${libro.listaRecensioni}" style="margin-bottom: 1.5rem;">
+
+        <h3 th:text="${recensione.title +' (' +recensione.rating + ' / 5)'}">Review Title</h3>
+
+        <p th:text="${recensione.text}">Review text...</p>
+
         <p>
-            <span class="label">Autori:</span> 
-            <span th:if="*{listaAutori != null and !#lists.isEmpty(listaAutori)}">
-                <span th:each="autore, iterStat : *{listaAutori}">
-                    <span th:text="${autore.firstName + ' ' + autore.lastName}">Nome Autore</span>
-                    <span th:if="${!iterStat.last}">, </span>
-                </span>
-            </span>
-            <span th:if="*{listaAutori == null or #lists.isEmpty(listaAutori)}">
-                Nessun autore associato
-            </span>
+            Written by: 
+            <a th:href="@{/recensione/{username}/recensioni(username=${recensione.autore.credentials.username})}"
+               th:text="${recensione.autore.nickname}">Author Name</a>
         </p>
-        <p><span class="label">Anno:</span> <span th:text="*{year}">2023</span></p>
-    </div>
-    
-    <div class="gallery" th:if="*{listaImmagini != null and !#lists.isEmpty(listaImmagini)}">
-        <img th:each="img : *{listaImmagini}" 
-             th:src="@{'/images-db-libro/' + ${img.id}}" 
-             th:alt="'Immagine di ' + *{title}" />
-    </div>
-    <div class="no-images" th:if="*{listaImmagini == null or #lists.isEmpty(listaImmagini)}">
-        Nessuna immagine disponibile per questo libro.
-    </div>
-</div>
+
+    </li>
+</ul>
 
 </body>
 </html>

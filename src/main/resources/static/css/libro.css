@@ -12,13 +12,15 @@ body {
 }
 
 .libro-container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     background-color: var(--dark-lavender);
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 3rem 2rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     color: var(--purple);
+    overflow: visible;
+    margin-bottom: 1rem;
 }
 
 h1 {
@@ -42,24 +44,32 @@ h1 {
 }
 
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    display: flex;
+    justify-content: center;   /* centra le immagini tutte in fila */
+    gap: 1rem;                 /* spazio uniforme tra immagini */
+    flex-wrap: nowrap;         /* evita che vadano a capo */
+    overflow-x: auto;          /* scroll orizzontale se tante immagini */
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .gallery img {
-    width: 100%;
-    height: 250px;
+    width: 270px;   
+    height: 450px;  
     object-fit: cover;
     border-radius: 1rem;
     border: 2px solid var(--purple);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
+    display: block;
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 .gallery img:hover {
     transform: scale(1.03);
 }
+
 
 .no-images {
     text-align: center;
@@ -67,3 +77,55 @@ h1 {
     font-style: italic;
     padding: 2rem 0;
 }
+
+.reviews-container {
+	margin-top: 1rem;
+    max-width: 900px;
+    margin: 0 auto 3rem auto; /* centra e margine sotto */
+    padding: 1rem 2rem;
+    background-color: var(--dark-lavender);
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    color: var(--purple);
+}
+
+.reviews-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--purple);
+}
+
+.reviews-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.reviews-container li {
+    background-color: var(--dark-lavender);
+    border: 1px solid var(--purple);
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+    color: var(--purple);
+}
+
+.reviews-container h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.reviews-container p {
+    margin: 0.25rem 0;
+}
+
+.reviews-container a {
+    color: var(--purple);
+    text-decoration: underline;
+}
+
+.reviews-container a:hover {
+    color: var(--light-lavender);
+}
+

@@ -32,6 +32,10 @@ public class Recensione {
 	
 	@ManyToOne()
 	private Libro libro;
+	
+	@ManyToOne
+    private User autore;
+
 
 	public Recensione() {}
 	
@@ -82,6 +86,14 @@ public class Recensione {
 	    if(libro != null && !libro.getListaRecensioni().contains(this)) {
 	        libro.getListaRecensioni().add(this);
 	    }
+	}
+
+	public User getAutore() {
+		return autore;
+	}
+
+	public void setAutore(User autore) {
+		this.autore = autore;
 	}
 
 	@Override
