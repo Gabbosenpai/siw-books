@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autori</title>
+    <title>Authors</title>
     <link rel="stylesheet" href="/css/autori.css">
 </head>
 <body>
-    <h1>Autori</h1>
+    <h1>Authors</h1>
     <div class="autori-grid">
         <div class="autore-card" th:each="autore : ${autori}">
         	<a th:href="@{'/autore' + '/' +${autore.id}}">
         		<img th:if="${autore.immagine != null}"  
-        			 th:src="@{'/images-db/' + ${autore.immagine.id}}" 
+        			 th:src="@{'/images-db-autore/' + ${autore.immagine.id}}" 
         			 alt="Foto di [[${autore.firstName}]] [[${autore.lastName}]]">
    		    </a>
             <div class="autore-name">

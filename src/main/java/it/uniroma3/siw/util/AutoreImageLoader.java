@@ -13,7 +13,7 @@ import it.uniroma3.siw.model.ImmagineAutore;
 import it.uniroma3.siw.repository.ImmagineAutoreRepository;
 
 @Component
-public class ImageLoader implements CommandLineRunner{
+public class AutoreImageLoader implements CommandLineRunner{
 
 	@Autowired
 	private ImmagineAutoreRepository immagineRepo;
@@ -21,7 +21,7 @@ public class ImageLoader implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		if (immagineRepo.count() == 0) {
-			System.out.println("Carico immagini perché il DB è vuoto...");
+			System.out.println("Carico immagini Autore perché il DB è vuoto...");
 
 			// lista dei fileName
 			List<String> fileNames = List.of(
@@ -56,9 +56,9 @@ public class ImageLoader implements CommandLineRunner{
 				immagineRepo.save(img);
 				System.out.println("Salvata immagine: " + fileName);
 			}
-			System.out.println("Caricamento immagini completato!");
+			System.out.println("Caricamento immagini Autore completato!");
 	    } else {
-	        System.out.println("Immagini già presenti. Skip caricamento.");
+	        System.out.println("Immagini Autore già presenti. Skip caricamento.");
 	    }
 	}
 }

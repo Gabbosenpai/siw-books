@@ -1,0 +1,60 @@
+:root {
+    --light-lavender: #BA87DE; /* light lavender */
+    --dark-lavender: #8D5EB7; /* dark lavender */
+    --purple: #6A0DAD; /* purple */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--light-lavender);
+    margin: 0;
+    padding: 2%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2%;
+    font-size: 2rem;
+}
+
+.libri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2%;
+    padding: 1%;
+}
+
+.libro-card {
+    background-color: var(--dark-lavender);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.libro-card:hover {
+    transform: scale(1.03);
+}
+
+.libro-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 250px;
+    border-bottom: 2px solid var(--purple);
+}
+
+.libro-info {
+    margin: 0;
+    padding: 1.0rem 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--purple);
+    text-align: center;
+    min-height: 4rem;
+    line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}

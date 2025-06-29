@@ -11,7 +11,7 @@ import it.uniroma3.siw.model.ImmagineAutore;
 import it.uniroma3.siw.service.ImmagineAutoreService;
 
 @RestController
-@RequestMapping("/images-db")
+@RequestMapping("/images-db-autore")
 public class ImmagineAutoreController {
 
     private final ImmagineAutoreService immagineAutoreService;

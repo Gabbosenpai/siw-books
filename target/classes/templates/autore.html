@@ -10,7 +10,7 @@
   <div class="container">
     <div class="foto-autore">
       <img th:if="${autore.immagine != null}"  
-        			 th:src="@{'/images-db/' + ${autore.immagine.id}}" alt="Foto di [[${autore.firstName}]] [[${autore.lastName}]]" />
+        			 th:src="@{'/images-db-autore/' + ${autore.immagine.id}}" alt="Foto di [[${autore.firstName}]] [[${autore.lastName}]]" />
     </div>
     <div class="info-autore">
       <div class="nome-autore" th:text="${autore.firstName} + ' ' + ${autore.lastName}">Nome Cognome</div>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import it.uniroma3.siw.model.ImmagineLibro;
 import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.service.LibroService;
@@ -30,7 +31,7 @@ public class LibroController {
 	public String getLibro(@PathVariable("id") Long id, Model model) { 
 		Libro libro = this.libroService.getLibroById(id);
 		if(libro == null) {
-			return "libroNotFound.html";
+			return "notFound.html";
 		}
 		List <Recensione> reversed = libro.getListaRecensioni();
 		Collections.reverse(reversed);
