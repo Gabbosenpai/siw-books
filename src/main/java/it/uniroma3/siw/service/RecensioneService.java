@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.RecensioneRepository;
@@ -33,5 +34,9 @@ public class RecensioneService {
 
 	public void deleteById(Long id) {
 		recensioneRepository.deleteById(id);
+	}
+	
+	public boolean existsByLibroAndAutore(Libro libro, User autore) {
+	    return recensioneRepository.existsByLibroAndAutore(libro, autore);
 	}
 }

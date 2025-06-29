@@ -2,11 +2,12 @@
     --light-lavender: #BA87DE;
     --dark-lavender: #8D5EB7;
     --purple: #6A0DAD;
+    --purple-light: #8C33C6;
 }
 
 body {
     font-family: sans-serif;
-    background-color: #f9f6fc;
+    background-color: var(--light-lavender);
     margin: 0;
     padding: 20px;
 }
@@ -21,7 +22,7 @@ header {
 }
 
 header a {
-    color: white;
+    color: var(--purple-light);
     margin-left: 15px;
     text-decoration: none;
     font-weight: bold;
@@ -44,24 +45,28 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: white;
+    background-color: var(--light-lavender);
     box-shadow: 0 0 10px rgba(106, 13, 173, 0.2);
 }
 
 th, td {
-    border: 1px solid var(--light-lavender);
+    border: 1px solid var(--dark-lavender);
     padding: 12px;
     text-align: left;
     vertical-align: top;
 }
 
 th {
-    background-color: var(--light-lavender);
-    color: white;
+    background-color: var(--dark-lavender);
+    color: var(--purple);
+}
+
+td {
+    color: var(--purple-light);
 }
 
 tr:nth-child(even) {
-    background-color: #f3e9f9;
+    background-color: #d9c3e6; /* lavanda chiaro */
 }
 
 a {

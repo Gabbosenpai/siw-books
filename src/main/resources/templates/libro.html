@@ -14,7 +14,7 @@
 
 		<div class="info">
 			<p>
-				<span class="label">Autori:</span> <span
+				<span class="label">Authors:</span> <span
 					th:if="*{listaAutori != null and !#lists.isEmpty(listaAutori)}">
 					<span th:each="autore, iterStat : *{listaAutori}"> <span
 						th:text="${autore.firstName + ' ' + autore.lastName}">Nome
@@ -24,7 +24,7 @@
 					Nessun autore associato </span>
 			</p>
 			<p>
-				<span class="label">Anno:</span> <span th:text="*{year}">2023</span>
+				<span class="label">Year:</span> <span th:text="*{year}">2023</span>
 			</p>
 		</div>
 

@@ -11,28 +11,30 @@
 
 <body>
   <header>
-    <div class="nav-left">
-      <a href="/">
-        <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" title="Home" class="logo" />
-      </a>
-    </div>
-    <div class="nav-right">
-      <div th:if="${userDetails}">
-        <span th:text="${nickname}">Username</span>
-        <a href="/logout">Logout</a>
-      </div>
-      <div th:unless="${userDetails}">
-        <a href="/login">Login</a>
-      </div>
-    </div>
-  </header>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" title="Home">
+                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" width="70" height="70" />
+            </a>
+            <a href="/libro">Books</a>
+            <a href="/autore">Authors</a>
+            <a href="/recensione">Reviews</a>
+        </div>
+
+        <div class="user-block" th:if="${userDetails}">
+            <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+
+        <div class="user-block" th:unless="${userDetails}">
+            <a class="login-link" href="/login">Login</a>
+        </div>
+    </nav>
+</header>
 
   <main>
-    <div class="center-links">
-      <a href="/libro">Books</a>
-      <a href="/autore">Authors</a>
-      <a href="/recensione">Reviews</a>
-    </div>
-  </main>
+  	<h1 class="welcome-title">Welcome to Siw Books!</h1>
+  	<h1 class="welcome-title">Read & Prosper!</h1>
+</main>
 </body>
 </html>
