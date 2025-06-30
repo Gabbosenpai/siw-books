@@ -4,27 +4,36 @@
     <meta charset="UTF-8">
     <title>Recensioni di [[${utente.nickname}]]</title>
     <link rel="stylesheet" href="/css/recensioniUtente.css" />
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
 
 <header>
-    <div th:if="${userDetails}">
-        <a class="username" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
-        <a href="/logout">Logout</a>
-    </div>
-    <div th:unless="${userDetails}">
-        <a href="/login">Login</a>
-    </div>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" title="Home">
+                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo"/>
+            </a>
+            <a href="/libro">Books</a>
+            <a href="/autore">Authors</a>
+            <a href="/recensione">Reviews</a>
+        </div>
+
+         <div class="user-block" th:if="${userDetails}">
+            <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+
+        <div class="user-block" th:unless="${userDetails}">
+            <a class="login-link" href="/login">Login</a>
+        </div>
+    </nav>
 </header>
 
-<div class="logo">
-    <a href="/"><img src="/images/Siw-Books-Cut-Logo.png" width="70" alt="Logo" /></a>
-</div>
-
-<h1 th:text="'Recensioni di ' + ${utente.nickname}">nickname</h1>
+<h1 th:text="${utente.nickname} + '\'s Reviews'">nickname</h1>
 
 <div th:if="${recensioni.isEmpty()}">
-    <p>Questo utente non ha ancora scritto recensioni.</p>
+    <p>No reviews yet...</p>
 </div>
 
 <div th:unless="${recensioni.isEmpty()}">

@@ -2,6 +2,7 @@ package it.uniroma3.siw.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import it.uniroma3.siw.model.Autore;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.ImmagineAutore;
+import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.model.Nationality;
 import it.uniroma3.siw.service.AutoreService;
 import it.uniroma3.siw.service.CredentialsService;
@@ -46,10 +48,15 @@ public class AutoreController {
 	}
 	
 	@GetMapping("/autore/{id}")
-	public String getAutore(@PathVariable("id") Long id, Model model) {
+	public String getAutore(@PathVariable("id") Long id, Model model, Principal principal) {
 		Autore autore = this.autoreService.getAutoreById(id);
 		if(autore == null) {
 			return "notFound.html";
+		}
+		if (principal != null) {
+			UserDetails userDetailsRole = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Credentials credentials = credentialsService.getCredentials(userDetailsRole.getUsername());
+			model.addAttribute("role", credentials.getRole());
 		}
 		model.addAttribute("autore", autore);
 		return "autore.html";
@@ -98,5 +105,17 @@ public class AutoreController {
 
 	    this.autoreService.save(autore);
 	    return "redirect:/autore/" + autore.getId();
+	}
+	
+	@PostMapping("/autore/{id}/delete")
+	public String deleteAutore(@PathVariable Long id) {
+	    Autore autore = autoreService.getAutoreById(id);
+	    if (autore != null) {
+	        for (Libro libro : new ArrayList<>(autore.getListaLibri())) {
+	            libro.removeAutore(autore);
+	        }
+	        autoreService.deleteAutoreById(id);
+	    }
+	    return "redirect:/autore";
 	}
 }

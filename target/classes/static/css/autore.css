@@ -10,92 +10,10 @@ body {
 	font-family: var(--font-family);
 	background-color: var(--light-lavender);
 	color: var(--purple);
-	padding: 2%;
-	display: flex;
+	padding: 0;
 	justify-content: center;
 	min-height: 100vh;
 	box-sizing: border-box;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--dark-lavender);
-    box-sizing: border-box;
-}
-
-/* Contenitore logo + link navigazione a sinistra */
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 3rem; /* spazio tra logo e link */
-}
-
-/* Link del logo (solo immagine) */
-.nav-links a:first-child {
-    display: inline-block;
-}
-
-/* Immagine logo */
-.nav-links img.logo {
-    width: 20em;
-    height: auto;
-    display: block; /* evita spazi sotto l'immagine */
-}
-
-/* Link principali della navbar (escluso il logo) */
-.nav-links a:not(:first-child) {
-    text-decoration: none;
-    color: var(--purple);
-    font-weight: bold;
-    font-size: 1.4rem;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:not(:first-child):hover {
-    color: var(--light-lavender);
-    text-shadow: 1px 1px 2px var(--purple-light);
-}
-
-/* Blocco utente a destra: username e logout/login */
-.user-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* Stile per il nickname in pillola */
-.username-pill {
-    background-color: var(--purple);
-    color: var(--light-lavender);
-    padding: 6px 15px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.username-pill:hover {
-    background-color: var(--purple-light);
-}
-
-/* Link logout e login */
-.logout-link,
-.login-link {
-    color: var(--light-lavender);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-
-.logout-link:hover,
-.login-link:hover {
-    color: var(--purple-light);
 }
 
 .container {
@@ -108,6 +26,7 @@ body {
 	padding: 1rem;
 	gap: 1rem;
 	flex-wrap: wrap;
+    margin: 2rem auto;
 }
 
 .foto-autore {
@@ -163,4 +82,37 @@ body {
 		padding: 0;
 		margin-top: 1rem;
 	}
+}
+
+.MAD-BUTTON {
+	display: inline-block;
+	background-color: #d9534f;
+	color: white;
+	border: 1px solid #b94a48;
+	padding: 1em 2em;
+	font-weight: bold;
+	font-size: 1.1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+	text-decoration: none; /* se fosse un <a> */
+	text-align: center;
+	margin: 1rem 1rem;
+}
+
+.MAD-BUTTON:hover {
+	background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+.MAD-BUTTON:focus {
+	outline: none;
+    box-shadow: 0 0 5px 2px rgba(217, 83, 79, 0.7);
+	/* effetto glow rosso */
+}
+
+/* Container per centrare il bottone */
+.MAD-BUTTON-container {
+    text-align: center;
+    margin-top: 0;
 }

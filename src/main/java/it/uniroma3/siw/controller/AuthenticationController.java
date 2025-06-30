@@ -79,6 +79,8 @@ public class AuthenticationController {
             model.addAttribute("user", user);
             return "successfulRegistration.html";
         }
+        model.addAttribute("user", user); 
+        model.addAttribute("credentials", credentials); 
         return "formRegistration.html";
     }
 }

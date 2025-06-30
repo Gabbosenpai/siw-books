@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dettaglio Autore</title>
   <link rel="stylesheet" href="/css/autore.css">
+  <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
 
@@ -41,6 +42,13 @@
       <div class="date-autore" th:if="${autore.dateOfDeath != null}" th:text="'Date of Death: ' + ${#temporals.format(autore.dateOfDeath, 'dd MMMM yyyy')}">Morto: 01 Gennaio 2000</div>
       <div class="nazionalita-autore" th:text="'Nationality: ' + ${autore.nationality.getFullName}">Nazionalità: ITA</div>
     </div>
+  </div>
+  
+  <div th:if="${role == 'ADMIN'}" class="MAD-BUTTON-container">
+    <form th:action="@{'/autore/' + ${autore.id} + '/delete'}" method="post" 
+        onsubmit="return confirm('This Author will be gone for good, are you sure?');">
+      <button type="submit" class="MAD-BUTTON">Delete Author</button>
+    </form>
   </div>
 </body>
 </html>
