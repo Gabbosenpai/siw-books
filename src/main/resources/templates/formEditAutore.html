@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Modifica Autore</title>
+  <link rel="stylesheet" href="/css/formStyle.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+</head>
+<body>
+ <header>
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="/" title="Home">
+                    <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" />
+                </a>
+                <a href="/libro">Books</a>
+                <a href="/autore">Authors</a>
+                <a href="/recensione">Reviews</a>
+            </div>
+
+            <div class="user-block" th:if="${userDetails}">
+                <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+                <a class="logout-link" href="/logout">Logout</a>
+            </div>
+
+            <div class="user-block" th:unless="${userDetails}">
+                <a class="login-link" href="/login">Login</a>
+            </div>
+        </nav>
+    </header>
+
+  <h1 class="page-title">Edit Author</h1>
+
+  <form th:action="@{'/autore/' + ${autore.id} + '/edit'}" th:object="${autore}" method="POST">
+    <fieldset>
+      <legend>Author Details</legend>
+
+      <label for="firstName">First Name:
+      <input type="text" id="firstName" th:field="*{firstName}" required />
+</label>
+      <label for="lastName">Last Name:
+      <input type="text" id="lastName" th:field="*{lastName}" required />
+</label>
+      <label for="dateOfBirth">Date of Birth:
+      <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required />
+</label>
+      <label for="dateOfDeath">Date of Death:
+      <input type="date" id="dateOfDeath" th:field="*{dateOfDeath}" />
+</label>
+      <label for="nationality">Nationality:
+      <select id="nationality" th:field="*{nationality}">
+        <option th:each="nat : ${nationalities}" 
+                th:value="${nat}" 
+                th:text="${nat}" 
+                th:selected="${nat} == ${autore.nationality}">
+        </option>
+      </select>
+</label>
+      <label>Current Books:
+      <ul>
+        <li th:each="libro : ${autore.listaLibri}">
+          <span th:text="${libro.title}">Book Title</span>
+          <input type="checkbox" th:name="libriDaRimuovere" th:value="${libro.id}" /> Remove
+        </li>
+      </ul>
+</label>
+      <label for="libriDaAggiungere">Add Books:
+      <select multiple id="libriDaAggiungere" name="libriDaAggiungere" size="5">
+        <option th:each="libro : ${listaLibri}" 
+                th:value="${libro.id}" 
+                th:text="${libro.title}">Book Title</option>
+      </select>
+      <small class="multi-select-info">Hold <strong>CTRL/CMD</strong> to select multiple books</small>
+</label>
+      <button type="submit">Save Edits</button>
+    </fieldset>
+  </form>
+</body>
+</html>

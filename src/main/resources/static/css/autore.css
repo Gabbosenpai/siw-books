@@ -26,7 +26,7 @@ body {
 	padding: 1rem;
 	gap: 1rem;
 	flex-wrap: wrap;
-    margin: 2rem auto;
+    margin: 1rem auto;
 }
 
 .foto-autore {
@@ -82,6 +82,64 @@ body {
 		padding: 0;
 		margin-top: 1rem;
 	}
+}
+
+.libri-autore {
+  max-width: 900px;
+  margin: 1rem auto;
+  background-color: var(--dark-lavender);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  color: var(--text-dark, #3D065F);
+}
+
+.libri-autore h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.libri-autore ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.libri-autore ul li {
+  margin-bottom: 0.5rem;
+}
+
+.libri-autore ul li a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.libri-autore ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Bottone add-author stile e hover coerenti con navbar */
+.add-author-button {
+    display: inline-block;
+    margin: 0.5rem auto 0 auto;
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-author-container {
+    text-align: center;
+}
+
+.add-author-button:hover {
+    background-color: var(--purple-light);
+    color: white;
 }
 
 .MAD-BUTTON {

@@ -3,6 +3,7 @@ package it.uniroma3.siw.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +26,7 @@ import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.model.Nationality;
 import it.uniroma3.siw.service.AutoreService;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.LibroService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -32,6 +34,8 @@ public class AutoreController {
 
 	@Autowired
 	private AutoreService autoreService;
+	@Autowired
+	private LibroService libroService;
 	@Autowired
 	private CredentialsService credentialsService;
 	
@@ -118,4 +122,78 @@ public class AutoreController {
 	    }
 	    return "redirect:/autore";
 	}
+	
+	@GetMapping("/autore/{id}/edit")
+	public String formEditAutore(@PathVariable("id") Long id, Model model, Principal principal) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("role", credentials.getRole());
+		if (!credentials.getRole().equals("ADMIN")) {
+			return "notFound.html";
+		}
+		Autore autore = autoreService.getAutoreById(id);
+		List<Libro> listaLibri = libroService.getAllLibri();
+
+		model.addAttribute("autore", autore);
+		model.addAttribute("listaLibri", listaLibri);
+		model.addAttribute("nationalities", Nationality.values());
+
+		return "formEditAutore.html";
+	}
+	
+	@PostMapping("/autore/{id}/edit")
+	public String editAutore(@PathVariable("id") Long id,
+	                         @ModelAttribute("autore") Autore autoreAggiornato,
+	                         @RequestParam(value = "libriDaRimuovere", required = false) List<Long> libriDaRimuovere,
+	                         @RequestParam(value = "libriDaAggiungere", required = false) List<Long> libriDaAggiungere,
+	                         Model model, Principal principal) {
+
+	    // Controllo di sicurezza
+	    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+	    if (!"ADMIN".equals(credentials.getRole())) {
+	        return "notFound.html";
+	    }
+
+	    // Recupera l'autore dal DB
+	    Autore autore = autoreService.getAutoreById(id);
+	    if (autore == null) {
+	        return "notFound.html";
+	    }
+
+	    // Aggiorna i campi semplici
+	    autore.setFirstName(autoreAggiornato.getFirstName());
+	    autore.setLastName(autoreAggiornato.getLastName());
+	    autore.setDateOfBirth(autoreAggiornato.getDateOfBirth());
+	    autore.setDateOfDeath(autoreAggiornato.getDateOfDeath());
+	    autore.setNationality(autoreAggiornato.getNationality());
+
+	    // Rimuovi libri selezionati (se ce ne sono)
+	    if (libriDaRimuovere != null) {
+	        for (Long libroId : libriDaRimuovere) {
+	            Libro libro = libroService.getLibroById(libroId);
+	            if (libro != null) {
+	                autore.removeLibro(libro);
+	            }
+	        }
+	    }
+
+	    // Aggiungi libri selezionati (se ce ne sono)
+	    if (libriDaAggiungere != null) {
+	        for (Long libroId : libriDaAggiungere) {
+	            Libro libro = libroService.getLibroById(libroId);
+	            if (libro != null && !autore.getListaLibri().contains(libro)) {
+	                autore.addLibro(libro);
+	            }
+	        }
+	    }
+
+	    // Salva l'autore aggiornato
+	    autoreService.save(autore);
+
+	    // Redirect alla pagina dell'autore aggiornato
+	    return "redirect:/autore/" + autore.getId();
+	}
+
 }
+

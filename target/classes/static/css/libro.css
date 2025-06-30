@@ -46,12 +46,15 @@ h1 {
 
 .gallery {
 	display: flex;
-	justify-content: center; /* centra le immagini tutte in fila */
-	gap: 1rem; /* spazio uniforme tra immagini */
-	flex-wrap: nowrap; /* evita che vadano a capo */
-	overflow-x: auto; /* scroll orizzontale se tante immagini */
+	justify-content: flex-start; 
+	gap: 1rem;
+	flex-wrap: nowrap;
+	overflow-x: auto;
 	max-width: 900px;
 	margin: 0 auto;
+	padding-left: 1rem; 
+	scrollbar-width: thin;
+    scrollbar-color: var(--purple) var(--dark-lavender);
 }
 
 .gallery img {
@@ -66,6 +69,26 @@ h1 {
 	flex-shrink: 0;
 	cursor: pointer;
 }
+
+.gallery::-webkit-scrollbar {
+  height: 2rem; /* più spesso ma non esagerare */
+}
+
+.gallery::-webkit-scrollbar-track {
+  background: var(--dark-lavender);
+  border-radius: 1rem;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+  background-color: var(--purple);
+  border-radius: 1rem;
+  border: 0.5rem solid var(--dark-lavender);
+}
+
+.gallery::-webkit-scrollbar-thumb:hover {
+  background-color: var(--light-lavender);
+}
+
 
 .no-images {
 	text-align: center;

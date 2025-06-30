@@ -41,6 +41,9 @@ th {
 
 td {
     color: var(--purple-light);
+    word-break: break-word;
+    max-width: 200px;
+    white-space: normal;
 }
 
 tr:nth-child(even) {
