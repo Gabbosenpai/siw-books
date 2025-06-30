@@ -2,21 +2,122 @@
     --light-lavender: #BA87DE; /* light lavender */
     --dark-lavender: #8D5EB7; /* dark lavender */
     --purple: #6A0DAD; /* purple */
+    --purple-light: #8C33C6;
+    --dark-purple: #5B0C91;
+    --text-dark: #3D065F;
 }
 
 body {
     font-family: Arial, sans-serif;
     background-color: var(--light-lavender);
     margin: 0;
-    padding: 2%;
+    padding: 0;
+    color: var(--text-dark);
 }
 
+/* HEADER & NAVBAR */
+.navbar {
+    padding: 1rem 2rem;
+    background-color: var(--dark-lavender);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-links a:first-child img.logo {
+    width: 20em;
+    height: auto;
+    display: block;
+}
+
+.nav-links a:not(:first-child) {
+    text-decoration: none;
+    color: var(--purple);
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:not(:first-child):hover {
+    color: var(--light-lavender);
+    text-shadow: 1px 1px 2px var(--purple-light);
+}
+
+.user-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.username-pill {
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.username-pill:hover {
+    background-color: var(--purple-light);
+    color: white;
+}
+
+.logout-link, .login-link {
+    color: var(--light-lavender);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover, .login-link:hover {
+    color: var(--purple-light);
+}
+
+/* Bottone add-author stile e hover coerenti con navbar */
+.add-author-button {
+    display: inline-block;
+    margin: 0 auto 1.5rem auto;
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-author-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.add-author-button:hover {
+    background-color: var(--purple-light);
+    color: white;
+}
+
+/* Titolo pagina */
 h1 {
     text-align: center;
     margin-bottom: 2%;
     font-size: 2rem;
 }
 
+/* GRID LIBRI */
 .libri-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -47,7 +148,7 @@ h1 {
 
 .libro-info {
     margin: 0;
-    padding: 1.0rem 0.5rem;
+    padding: 1rem 0.5rem;
     font-size: 1rem;
     font-weight: bold;
     color: var(--purple);

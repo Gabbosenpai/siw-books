@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Books</title>
-    <link rel="stylesheet" href="/css/libri.css">
+    <link rel="stylesheet" href="/css/libri.css" />
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="/" title="Home">
+                    <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo"/>
+                </a>
+                <a href="/libro">Books</a>
+                <a href="/autore">Authors</a>
+                <a href="/recensione">Reviews</a>
+            </div>
+
+            <div class="user-block" th:if="${userDetails}">
+                <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+                <a class="logout-link" href="/logout">Logout</a>
+            </div>
+
+            <div class="user-block" th:unless="${userDetails}">
+                <a class="login-link" href="/login">Login</a>
+            </div>
+        </nav>
+    </header>
+
     <h1>Books</h1>
-    
-    <div th:if="${role == 'ADMIN'}">
+
+    <div th:if="${role == 'ADMIN'}" class="add-author-container">
         <a href="/libro/formNewLibro" class="add-author-button">+ Add Book</a>
     </div>
-    
+
     <div class="libri-grid">
         <div class="libro-card" th:each="libro : ${libri}">
             <a th:href="@{'/libro/' + ${libro.id}}">
                 <img th:if="${!#lists.isEmpty(libro.listaImmagini)}"
                      th:src="@{'/images-db-libro/' + ${libro.listaImmagini[0].id}}"
-                     th:alt="'Copertina di ' + ${libro.title}">
+                     th:alt="'Copertina di ' + ${libro.title}" />
             </a>
             <div class="libro-info">
                 <span th:text="${libro.title}"></span>
