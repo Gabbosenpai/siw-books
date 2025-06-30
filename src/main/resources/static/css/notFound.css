@@ -1,0 +1,40 @@
+:root {
+    --light-lavender: #BA87DE;
+    --dark-lavender: #8D5EB7;
+    --purple: #6A0DAD;
+    --purple-light: #8C33C6;
+    --dark-purple: #5B0C91;
+    --text-dark: #3D065F;
+}
+
+body {
+    background-color: var(--dark-purple);
+    color: var(--purple-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding-top: 0; /* niente spazio in alto */
+    margin: 0; /* togli margini di default */
+}
+
+h1 {
+    font-size: 6rem; /* raddoppiato da 3rem */
+    margin-bottom: 4rem; /* raddoppiato da 2rem */
+    color: #e84118; /* rosso acceso */
+}
+
+.amongus-img {
+    cursor: pointer;
+    width: 400px; /* raddoppiato da 200px */
+    transition: transform 0.3s ease
+}
+
+.amongus-img:hover {
+    transform: scale(1.1);
+}
+
+p {
+    margin-top: 3rem; /* raddoppiato da 1.5rem */
+    font-size: 2.4rem; /* raddoppiato da 1.2rem */
+    color: var(--light-lavender);
+    font-weight: 600;
+}

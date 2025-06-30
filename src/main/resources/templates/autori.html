@@ -12,7 +12,7 @@
     <nav class="navbar">
         <div class="nav-links">
             <a href="/" title="Home">
-                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" width="70" height="70" />
+                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" />
             </a>
             <a href="/libro">Books</a>
             <a href="/autore">Authors</a>
@@ -32,7 +32,7 @@
    
     <h1>Authors</h1>
     
-    <div th:if="${role == 'ADMIN'}">
+    <div class="add-author-container" th:if="${role == 'ADMIN'}">
         <a href="/autore/formNewAutore" class="add-author-button">+ Add Author</a>
     </div>
     

@@ -1,15 +1,116 @@
 :root {
-	--light-lavender: #BA87DE; /* light lavender */
-	--dark-lavender: #8D5EB7; /* dark lavender */
-	--purple: #6A0DAD; /* purple */
+    --light-lavender: #BA87DE;
+    --dark-lavender: #8D5EB7;
+    --purple: #6A0DAD;
+    --purple-light: #8C33C6;   /* variabile nuova per hover */
+    --dark-purple: #5B0C91;    /* opzionale, per testi scuri */
+    --text-dark: #3D065F;      /* opzionale, per testi */
 }
 
 body {
 	font-family: Arial, sans-serif;
 	background-color: var(--light-lavender);
 	margin: 0;
-	padding: 2%;
+	padding: 0;
 }
+
+/* HEADER & NAVBAR */
+.navbar {
+    padding: 1rem 2rem;
+    background-color: var(--dark-lavender);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-links a:first-child img.logo {
+    width: 20em;
+    height: auto;
+    display: block;
+}
+
+
+
+.nav-links a:not(:first-child) {
+    text-decoration: none;
+    color: var(--purple);
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:not(:first-child):hover {
+    color: var(--light-lavender);
+    text-shadow: 1px 1px 2px var(--purple-light);
+}
+
+.user-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.username-pill {
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.username-pill:hover {
+    background-color: var(--purple-light);
+    color: white; /* testo bianco per migliore leggibilità */
+}
+
+.logout-link, .login-link {
+    color: var(--light-lavender);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover, .login-link:hover {
+    color: var(--purple-light);
+}
+
+/* Bottone add-author stile e hover coerenti con navbar */
+.add-author-container {
+    text-align: center;
+    margin-bottom: 1.5rem; /* optional, per distanziare dal contenuto sotto */
+}
+
+.add-author-button {
+    display: inline-block;
+    margin: 0 auto 1.5rem auto;
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-author-button:hover {
+    background-color: var(--purple-light);
+    color: white;
+}
+
 
 h1 {
 	text-align: center;
@@ -67,107 +168,4 @@ h1 {
 	display: block;
 	margin-top: 0.2rem;
 	color: var(--purple);
-}
-
-/* HEADER E NAVBAR */
-
-/* Container principale header e navbar */
-
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--dark-lavender);
-    box-sizing: border-box;
-}
-
-/* Contenitore logo + link navigazione a sinistra */
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 3rem; /* spazio tra logo e link */
-}
-
-/* Link del logo (solo immagine) */
-.nav-links a:first-child {
-    display: inline-block;
-}
-
-/* Immagine logo */
-.nav-links img.logo {
-    width: 20em;
-    height: auto;
-    display: block; /* evita spazi sotto l'immagine */
-}
-
-/* Link principali della navbar (escluso il logo) */
-.nav-links a:not(:first-child) {
-    text-decoration: none;
-    color: var(--purple);
-    font-weight: bold;
-    font-size: 1.4rem;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:not(:first-child):hover {
-    color: var(--light-lavender);
-    text-shadow: 1px 1px 2px var(--purple-light);
-}
-
-/* Blocco utente a destra: username e logout/login */
-.user-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* Stile per il nickname in pillola */
-.username-pill {
-    background-color: var(--purple);
-    color: var(--light-lavender);
-    padding: 6px 15px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.username-pill:hover {
-    background-color: var(--purple-light);
-}
-
-/* Link logout e login */
-.logout-link,
-.login-link {
-    color: var(--light-lavender);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-
-.logout-link:hover,
-.login-link:hover {
-    color: var(--purple-light);
-}
-
-.add-author-button {
-    background-color: var(--purple);
-    color: var(--light-lavender);
-    padding: 8px 20px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    display: inline-block;
-    margin: 15px 0;
-    transition: background-color 0.3s ease;
-}
-
-.add-author-button:hover {
-    background-color: var(--purple-light);
 }

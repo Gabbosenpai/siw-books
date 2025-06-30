@@ -142,6 +142,20 @@ select:focus {
     border-color: var(--purple);
     box-shadow: 0 0 5px var(--purple);
 }
+
+select[multiple] option:checked {
+  background-color: var(--purple-light); /* viola chiaro */
+  color: var(--light-lavender);         /* lilla chiaro */
+}
+
+.multi-select-info {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--dark-purple);
+  font-style: italic;
+}
+
 span.error {
     display: block;
     color: #b30000;
