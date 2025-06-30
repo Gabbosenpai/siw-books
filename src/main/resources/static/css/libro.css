@@ -74,6 +74,30 @@ h1 {
 	padding: 2rem 0;
 }
 
+/* Bottone add-author stile e hover coerenti con navbar */
+.add-author-button {
+    display: inline-block;
+    margin: 0.5rem auto 0 auto;
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-author-container {
+    text-align: center;
+}
+
+.add-author-button:hover {
+    background-color: var(--purple-light);
+    color: white;
+}
+
 .reviews-container {
 	max-width: 900px;
 	margin: 1rem auto 3rem auto; /* centra e margine sotto */
@@ -137,7 +161,7 @@ h1 {
 	transition: background-color 0.3s ease, border-color 0.3s ease;
 	text-decoration: none; /* se fosse un <a> */
 	text-align: center;
-	margin: 1rem 1rem;
+	margin: 1.5rem 0.5rem;
 }
 
 .MAD-BUTTON:hover {
