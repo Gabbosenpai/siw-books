@@ -30,7 +30,7 @@ public class LibroImageLoader implements CommandLineRunner {
         if (immagineLibroRepo.count() == 0) {
             System.out.println("Carico immagini libri perché il DB è vuoto...");
 
-            String basePath = "D:\\Programmazione\\Spring Boot Tool Suite\\Nuovo Workspace SIW\\siw-books\\src\\main\\resources\\static\\images\\books\\";
+            String basePath = "C:\\Users\\mogli\\OneDrive\\Documenti\\GitHub\\siw-books\\src\\main\\resources\\static\\images\\books\\";
             
             try (Stream<Path> paths = Files.list(Paths.get(basePath))) {
                 List<Path> fileList = paths

@@ -42,7 +42,7 @@ public class AutoreImageLoader implements CommandLineRunner{
 					"Albert_Camus.jpg"
 					);
 
-			String basePath = "D:\\Programmazione\\Spring Boot Tool Suite\\Nuovo Workspace SIW\\siw-books\\src\\main\\resources\\static\\images\\writers\\";
+			String basePath = "C:\\Users\\mogli\\OneDrive\\Documenti\\GitHub\\siw-books\\src\\main\\resources\\static\\images\\writers\\";
 
 			for (String fileName : fileNames) {
 				Path path = Paths.get(basePath + fileName);
