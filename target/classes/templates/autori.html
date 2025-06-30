@@ -31,6 +31,11 @@
 </header>
    
     <h1>Authors</h1>
+    
+    <div th:if="${role == 'ADMIN'}">
+        <a href="/autore/formNewAutore" class="add-author-button">+ Add Author</a>
+    </div>
+    
     <div class="autori-grid">
         <div class="autore-card" th:each="autore : ${autori}">
         	<a th:href="@{'/autore' + '/' +${autore.id}}">

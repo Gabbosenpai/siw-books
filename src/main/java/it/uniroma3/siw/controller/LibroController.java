@@ -1,5 +1,6 @@
 package it.uniroma3.siw.controller;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.service.AutoreService;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.LibroService;
 import it.uniroma3.siw.service.RecensioneService;
@@ -38,9 +40,18 @@ public class LibroController {
 	@Autowired
 	private RecensioneService recensioneService;
 	
+	@Autowired
+	private AutoreService autoreService;
+	
 	@GetMapping("/libro")
-	public String showLibri(Model model) {
+	public String showLibri(Model model, Principal principal) {
 		List<Libro> libri = (List<Libro>)this.libroService.getAllLibri();
+		
+		if (principal != null) {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+			model.addAttribute("role", credentials.getRole());
+		}
 		model.addAttribute("libri", libri);
 		return "libri.html";
 	}
@@ -116,6 +127,21 @@ public class LibroController {
 	    this.recensioneService.save(recensione);
 
 	    return "redirect:/libro/" + libro.getId();
+	}
+	
+	@GetMapping("/libro/formNewLibro")
+	public String formNewLibro(Model model, Principal principal) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("role", credentials.getRole());
+		if (!credentials.getRole().equals("ADMIN")) {
+			return "notFound.html";
+		}
+		if(!model.containsAttribute("libro")) {
+			model.addAttribute("libro",new Libro());
+		}
+		model.addAttribute("autori", autoreService.getAllAutori());
+		return "formNewLibro.html";
 	}
 	
 }
