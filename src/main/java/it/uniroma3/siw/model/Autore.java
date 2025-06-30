@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,9 +35,11 @@ public class Autore {
 	@Column(nullable = false)
 	private String lastName;
 	
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 	
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@Column(nullable = true)
 	private LocalDate dateOfDeath;
 	

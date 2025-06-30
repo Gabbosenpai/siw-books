@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Books</title>
+    <link rel="stylesheet" href="/css/formStyle.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="/" title="Home">
+                    <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" />
+                </a>
+                <a href="/libro">Books</a>
+                <a href="/autore">Authors</a>
+                <a href="/recensione">Reviews</a>
+            </div>
+
+            <div class="user-block" th:if="${userDetails}">
+                <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+                <a class="logout-link" href="/logout">Logout</a>
+            </div>
+
+            <div class="user-block" th:unless="${userDetails}">
+                <a class="login-link" href="/login">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Edit Book</h1>
+
+        <form th:action="@{'/libro/' + ${libro.id} + '/edit'}" th:object="${libro}" method="POST">
+            <fieldset>
+                <legend>Book Details</legend>
+
+                <label for="title">Title:
+                <input type="text" id="title" th:field="*{title}" required />
+</label>
+                <label for="year">Year:
+                <input type="number" id="year" th:field="*{year}" max="2025" required />
+</label>
+                <label>Current Authors:
+                <ul>
+                    <li th:each="autore : ${libro.listaAutori}">
+                        <span th:text="${autore.firstName + ' ' + autore.lastName}">Author</span>
+                        <input type="checkbox" th:name="autoriDaRimuovere" th:value="${autore.id}" /> Remove
+                    </li>
+                </ul>
+                </label>
+                <label for="autoriDaAggiungere">Add Authors:
+                <select multiple id="autoriDaAggiungere" name="autoriDaAggiungere" size="5">
+                    <option th:each="autore : ${listaAutori}" 
+                            th:value="${autore.id}" 
+                            th:text="${autore.firstName + ' ' + autore.lastName}">Author</option>
+                </select>
+                <small class="multi-select-info">Hold <strong>CTRL/CMD</strong> to select multiple authors</small>
+				</label>
+                <button type="submit">Save Edits</button>
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>

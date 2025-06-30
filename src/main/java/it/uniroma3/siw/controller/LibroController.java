@@ -219,12 +219,78 @@ public class LibroController {
 	@PostMapping("/libro/{id}/delete")
 	public String deleteLibro(@PathVariable Long id) {
 		Libro libro = libroService.getLibroById(id);
-        for (Autore autore : new ArrayList<>(libro.getListaAutori())) {
-            libro.removeAutore(autore);
-        }
-	    libroService.deleteLibroById(id);
-	    return "redirect:/libro";
+		for (Autore autore : new ArrayList<>(libro.getListaAutori())) {
+			libro.removeAutore(autore);
+		}
+		libroService.deleteLibroById(id);
+		return "redirect:/libro";
 	}
-	
+
+	@GetMapping("/libro/{id}/edit")
+	public String formEditLibro(@PathVariable("id") Long id, Model model, Principal principal) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("role", credentials.getRole());
+		if (!credentials.getRole().equals("ADMIN")) {
+			return "notFound.html";
+		}
+		Libro libro = libroService.getLibroById(id);
+		List<Autore> listaAutori = autoreService.getAllAutori();
+
+		model.addAttribute("libro", libro);
+		model.addAttribute("listaAutori", listaAutori);
+
+		return "formEditLibro.html";
+	}
+
+	@PostMapping("/libro/{id}/edit")
+	public String editLibro(@PathVariable("id") Long id, @ModelAttribute("libro") Libro libroAggiornato,
+			@RequestParam(value = "autoriDaRimuovere", required = false) List<Long> autoriDaRimuovere,
+			@RequestParam(value = "autoriDaAggiungere", required = false) List<Long> autoriDaAggiungere, Model model, Principal principal) {
+		
+		// Controllo di sicurezza
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if (!"ADMIN".equals(credentials.getRole())) {
+			return "notFound.html";
+		}
+
+		// Recupera il libro dal DB
+		Libro libro = libroService.getLibroById(id);
+		if (libro == null) {
+			return "notFound.html";
+		}
+
+		// Aggiorna titolo e anno
+		libro.setTitle(libroAggiornato.getTitle());
+		libro.setYear(libroAggiornato.getYear());
+
+		// Rimuovi autori selezionati (se ce ne sono)
+		if (autoriDaRimuovere != null) {
+			for (Long autoreId : autoriDaRimuovere) {
+				Autore autore = autoreService.getAutoreById(autoreId);
+				if (autore != null) {
+					libro.removeAutore(autore);
+				}
+			}
+		}
+
+		// Aggiungi autori selezionati (se ce ne sono)
+		if (autoriDaAggiungere != null) {
+			for (Long autoreId : autoriDaAggiungere) {
+				Autore autore = autoreService.getAutoreById(autoreId);
+				if (autore != null && !libro.getListaAutori().contains(autore)) {
+					libro.addAutore(autore);
+				}
+			}
+		}
+
+		// Salva il libro aggiornato
+		libroService.save(libro);
+
+		// Redirect alla pagina del libro aggiornato
+		return "redirect:/libro/" + libro.getId();
+	}
+
 
 }

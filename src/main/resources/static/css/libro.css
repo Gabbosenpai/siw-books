@@ -46,12 +46,15 @@ h1 {
 
 .gallery {
 	display: flex;
-	justify-content: center; /* centra le immagini tutte in fila */
-	gap: 1rem; /* spazio uniforme tra immagini */
-	flex-wrap: nowrap; /* evita che vadano a capo */
-	overflow-x: auto; /* scroll orizzontale se tante immagini */
+	justify-content: flex-start; 
+	gap: 1rem;
+	flex-wrap: nowrap;
+	overflow-x: auto;
 	max-width: 900px;
 	margin: 0 auto;
+	padding-left: 1rem; 
+	scrollbar-width: thin;
+    scrollbar-color: var(--purple) var(--dark-lavender);
 }
 
 .gallery img {
@@ -67,11 +70,55 @@ h1 {
 	cursor: pointer;
 }
 
+.gallery::-webkit-scrollbar {
+  height: 2rem; /* più spesso ma non esagerare */
+}
+
+.gallery::-webkit-scrollbar-track {
+  background: var(--dark-lavender);
+  border-radius: 1rem;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+  background-color: var(--purple);
+  border-radius: 1rem;
+  border: 0.5rem solid var(--dark-lavender);
+}
+
+.gallery::-webkit-scrollbar-thumb:hover {
+  background-color: var(--light-lavender);
+}
+
+
 .no-images {
 	text-align: center;
 	color: white;
 	font-style: italic;
 	padding: 2rem 0;
+}
+
+/* Bottone add-author stile e hover coerenti con navbar */
+.add-author-button {
+    display: inline-block;
+    margin: 0.5rem auto 0 auto;
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-author-container {
+    text-align: center;
+}
+
+.add-author-button:hover {
+    background-color: var(--purple-light);
+    color: white;
 }
 
 .reviews-container {
@@ -137,7 +184,7 @@ h1 {
 	transition: background-color 0.3s ease, border-color 0.3s ease;
 	text-decoration: none; /* se fosse un <a> */
 	text-align: center;
-	margin: 1rem 1rem;
+	margin: 1.5rem 0.5rem;
 }
 
 .MAD-BUTTON:hover {

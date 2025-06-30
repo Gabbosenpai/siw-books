@@ -44,7 +44,20 @@
     </div>
   </div>
   
+  <div class="libri-autore" th:if="${autore.listaLibri != null and !autore.listaLibri.isEmpty()}">
+  <h2>Books</h2>
+  <ul>
+    <li th:each="libro : ${autore.listaLibri}">
+      <a th:href="@{'/libro/' + ${libro.id}}" th:text="${libro.title}">Book Title</a>
+    </li>
+  </ul>
+</div>
+  
   <div th:if="${role == 'ADMIN'}" class="MAD-BUTTON-container">
+  <a th:href="@{'/autore/' + ${autore.id} + '/edit'}" class="add-author-button">
+        Edit Author
+    </a>
+  
     <form th:action="@{'/autore/' + ${autore.id} + '/delete'}" method="post" 
         onsubmit="return confirm('This Author will be gone for good, are you sure?');">
       <button type="submit" class="MAD-BUTTON">Delete Author</button>

@@ -64,6 +64,10 @@
 </div>
 
 <div th:if="${role == 'ADMIN'}" class="MAD-BUTTON-container">
+    <a th:href="@{'/libro/' + ${libro.id} + '/edit'}" class="add-author-button">
+        Edit Book
+    </a>
+
     <form th:action="@{'/libro/' + ${libro.id} + '/delete'}" method="post">
         <button 
             type="submit" 
