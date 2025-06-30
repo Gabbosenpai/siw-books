@@ -37,7 +37,21 @@
 		<div class="no-images"
 			th:if="*{listaImmagini == null or #lists.isEmpty(listaImmagini)}">
 			Nessuna immagine disponibile per questo libro.</div>
+			
+			
 	</div>
+	
+	<div th:if="${role == 'ADMIN'}" class="MAD-BUTTON-container">
+    <form th:action="@{'/libro/' + ${libro.id} + '/delete'}" method="post">
+    <button 
+        type="submit" 
+        class="MAD-BUTTON"
+        onclick="return confirm('This book will be gone for good, are you sure?');">
+        Delete Book
+    </button>
+</form>
+</div>
+	
 	<div class="reviews-container">
 	<h1>Reviews</h1>
 
@@ -67,6 +81,6 @@
 
     </li>
 </ul>
-
+</div>
 </body>
 </html>

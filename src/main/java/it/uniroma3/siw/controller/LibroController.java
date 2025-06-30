@@ -2,6 +2,7 @@ package it.uniroma3.siw.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -62,10 +63,15 @@ public class LibroController {
 	}
 
 	@GetMapping("/libro/{id}")
-	public String getLibro(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal UserDetails userDetails) { 
+	public String getLibro(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal UserDetails userDetails, Principal principal) { 
 		Libro libro = this.libroService.getLibroById(id);
 		if(libro == null) {
 			return "notFound.html";
+		}
+		if (principal != null) {
+			UserDetails userDetailsRole = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Credentials credentials = credentialsService.getCredentials(userDetailsRole.getUsername());
+			model.addAttribute("role", credentials.getRole());
 		}
 		List <Recensione> reversed = libro.getListaRecensioni();
 		Collections.reverse(reversed);
@@ -210,5 +216,15 @@ public class LibroController {
 		return "redirect:/libro/" + libro.getId();
 	}
 
+	@PostMapping("/libro/{id}/delete")
+	public String deleteLibro(@PathVariable Long id) {
+		Libro libro = libroService.getLibroById(id);
+        for (Autore autore : new ArrayList<>(libro.getListaAutori())) {
+            libro.removeAutore(autore);
+        }
+	    libroService.deleteLibroById(id);
+	    return "redirect:/libro";
+	}
+	
 
 }
