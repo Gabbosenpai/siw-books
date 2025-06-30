@@ -8,6 +8,11 @@
 </head>
 <body>
     <h1>Books</h1>
+    
+    <div th:if="${role == 'ADMIN'}">
+        <a href="/libro/formNewLibro" class="add-author-button">+ Add Book</a>
+    </div>
+    
     <div class="libri-grid">
         <div class="libro-card" th:each="libro : ${libri}">
             <a th:href="@{'/libro/' + ${libro.id}}">

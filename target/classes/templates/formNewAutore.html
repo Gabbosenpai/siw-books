@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Add New Author</title>
+    <link rel="stylesheet" href="/css/formStyle.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" title="Home">
+                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo"/>
+            </a>
+            <a href="/libro">Books</a>
+            <a href="/autore">Authors</a>
+            <a href="/recensione">Reviews</a>
+        </div>
+
+         <div class="user-block" th:if="${userDetails}">
+            <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+
+        <div class="user-block" th:unless="${userDetails}">
+            <a class="login-link" href="/login">Login</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <h1 class="page-title">Add New Author</h1>
+
+    <div class="form-container">
+        <form th:action="@{/autore/newAutore}" th:object="${autore}" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Author Details</legend>
+                
+                <label for="firstName">First Name
+                    <input type="text" th:field="*{firstName}" id="firstName" required />
+                </label>
+
+                <label for="lastName">Last Name
+                    <input type="text" th:field="*{lastName}" id="lastName" required />
+                </label>
+
+                <label for="dateOfBirth">Date of Birth
+                    <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth" required />
+                </label>
+
+                <label for="dateOfDeath">Date of Death
+                    <input type="date" th:field="*{dateOfDeath}" id="dateOfDeath" />
+                </label>
+
+                <label for="nationality">Nationality
+                    <select th:field="*{nationality}" id="nationality" required>
+                        <option value="" disabled selected>Select nationality</option>
+                        <option th:each="nation : ${nationalities}"
+                                th:value="${nation}"
+                                th:text="${nation}"></option>
+                    </select>
+                </label>
+
+                <label for="immagineFile">Author Image
+                    <input type="file" id="immagineFile" name="immagineFile" accept="image/*" />
+                </label>
+                
+                <button type="submit">Save Author</button>
+            </fieldset>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>

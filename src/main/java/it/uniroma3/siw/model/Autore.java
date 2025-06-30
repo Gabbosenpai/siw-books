@@ -40,7 +40,7 @@ public class Autore {
 	private LocalDate dateOfDeath;
 	
 	@Enumerated(EnumType.STRING)
-	private Nationality nationality;//forse si può gestire meglio
+	private Nationality nationality;
 	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private ImmagineAutore immagine;

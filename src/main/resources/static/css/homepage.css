@@ -2,108 +2,108 @@
   --light-lavender: #BA87DE;
   --dark-lavender: #8D5EB7;
   --purple: #6A0DAD;
+  --purple-light: #8C33C6;
+  --dark-purple: #5B0C91;
+  --text-dark: #3D065F;
+}
+
+/* Reset box-sizing globale */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif, sans-serif;
   background-color: var(--light-lavender);
   color: var(--purple);
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
 }
 
 /* HEADER E NAVBAR */
 
-/* Container principale header e navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--dark-lavender);
-    box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--dark-lavender);
+  box-sizing: border-box;
 }
 
-/* Contenitore logo + link navigazione a sinistra */
 .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 3rem; /* spazio tra logo e link */
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
-/* Link del logo (solo immagine) */
 .nav-links a:first-child {
-    display: inline-block;
+  display: inline-block;
 }
 
-/* Immagine logo */
 .nav-links img.logo {
-    width: 20em;
-    height: auto;
-    display: block; /* evita spazi sotto l'immagine */
+  width: 20em;
+  height: auto;
+  display: block;
 }
 
-/* Link principali della navbar (escluso il logo) */
 .nav-links a:not(:first-child) {
-    text-decoration: none;
-    color: var(--purple);
-    font-weight: bold;
-    font-size: 1.4rem;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: var(--purple);
+  font-weight: bold;
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:not(:first-child):hover {
-    color: var(--light-lavender);
-    text-shadow: 1px 1px 2px var(--purple-light);
+  color: var(--light-lavender);
+  text-shadow: 1px 1px 2px var(--purple-light);
 }
 
-/* Blocco utente a destra: username e logout/login */
 .user-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* Stile per il nickname in pillola */
 .username-pill {
-    background-color: var(--purple);
-    color: var(--light-lavender);
-    padding: 6px 15px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+  background-color: var(--purple);
+  color: var(--light-lavender);
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .username-pill:hover {
-    background-color: var(--purple-light);
+  background-color: var(--purple-light);
 }
 
-/* Link logout e login */
 .logout-link,
 .login-link {
-    color: var(--light-lavender);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+  color: var(--light-lavender);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .logout-link:hover,
 .login-link:hover {
-    color: var(--purple-light);
+  color: var(--purple-light);
 }
 
+/* Titolo di benvenuto grande centrale */
 .welcome-title {
-  font-size: 5rem;             /* scritta molto grande */
-  color: var(--purple);        /* viola acceso */
+  font-size: 5rem;
+  color: var(--purple);
   text-align: center;
   margin-top: 5rem;
+  margin-bottom: 3rem;
   font-weight: 900;
   text-shadow: 2px 2px 5px var(--dark-purple);
-  font-family: 'Sauce Tomato', sans-serif; /* se vuoi il font personalizzato */
 }

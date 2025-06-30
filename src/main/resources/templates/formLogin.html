@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="it">
 <head>
-	<title>
-		Siw Books - Login
-	</title>
-	<link rel="stylesheet" href=""/>
+    <meta charset="UTF-8">
+    <title>Siw Books - Login</title>
+    <link rel="stylesheet" th:href="@{/css/formStyle.css}">
 </head>
-
 <body>
-	<header>
-		<div th:if="${userDetails}">
-			<span th:text="${nickname}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${userDetails}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
+<header>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" title="Home"><img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo"/></a>
+            <a href="/libro">Books</a>
+            <a href="/autore">Authors</a>
+            <a href="/recensione">Reviews</a>
+        </div>
 
-	<div>
-		<a href="/"><img src ="/images/Siw-Books-Cut-Logo.png" width="10%"/></a>
-	</div>
-	<h1>Login</h1>
-	<form th:action="@{/login}" method="POST">
-		<div>
-			<span>Username:</span>
-			<span><input name="username" type="text" required/></span> 
-		</div>
-		<div>
-			<span>Password:</span>
-			<span><input name="password" type="password" required/></span> 
-		</div>
-		<div>
-			<span th:if="${param.error != null}">Wrong Username and/or Password!</span>
-		</div>
-		<div>
-			<span><button type="submit">Login</button></span>
-			<a th:href="@{/register}" th:text="Register">Register</a>
-		</div>
-		
-	</form>
+        <div class="user-block" th:if="${userDetails}">
+            <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+        <div class="user-block" th:unless="${userDetails}">
+            <a class="login-link" href="/login">Login</a>
+        </div>
+    </nav>
+</header>
 
+<main>
+    <h1 class="page-title">Login</h1>
+    <form th:action="@{/login}" method="post">
+        <label for="username">Username
+            <input type="text" id="username" name="username" required />
+        </label>
+
+        <label for="password">Password
+            <input type="password" id="password" name="password" required />
+        </label>
+
+        <span class="error" th:if="${param.error}" th:text="'Wrong Username and/or Password!'"></span>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p style="text-align:center; margin-top:1rem;">
+        Non hai un account? <a th:href="@{/register}">Registrati qui</a>
+    </p>
+</main>
 </body>
-
 </html>

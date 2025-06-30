@@ -154,3 +154,20 @@ h1 {
 .login-link:hover {
     color: var(--purple-light);
 }
+
+.add-author-button {
+    background-color: var(--purple);
+    color: var(--light-lavender);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    margin: 15px 0;
+    transition: background-color 0.3s ease;
+}
+
+.add-author-button:hover {
+    background-color: var(--purple-light);
+}
