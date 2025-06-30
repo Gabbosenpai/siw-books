@@ -1,131 +1,158 @@
 :root {
-    --light-lavender: #BA87DE; /* light lavender */
-    --dark-lavender: #8D5EB7; /* dark lavender */
-    --purple: #6A0DAD; /* purple */
+	--light-lavender: #BA87DE; /* light lavender */
+	--dark-lavender: #8D5EB7; /* dark lavender */
+	--purple: #6A0DAD; /* purple */
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--light-lavender);
-    margin: 0;
-    padding: 2%;
+	font-family: Arial, sans-serif;
+	background-color: var(--light-lavender);
+	margin: 0;
+	padding: 0;
 }
 
 .libro-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: var(--dark-lavender);
-    border-radius: 1rem;
-    padding: 3rem 2rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    color: var(--purple);
-    overflow: visible;
-    margin-bottom: 1rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: var(--dark-lavender);
+	border-radius: 1rem;
+	padding: 3rem 2rem;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+	color: var(--purple);
+	overflow: visible;
+	margin-bottom: 0;
+	margin-top: 2rem;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    color: var(--purple);
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 2.5rem;
+	color: var(--purple);
 }
 
 .info {
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--purple);
-    text-align: center;
+	margin-bottom: 2rem;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: var(--purple);
+	text-align: center;
 }
 
 .info span.label {
-    color: var(--purple);
-    font-weight: bold;
+	color: var(--purple);
+	font-weight: bold;
 }
 
 .gallery {
-    display: flex;
-    justify-content: center;   /* centra le immagini tutte in fila */
-    gap: 1rem;                 /* spazio uniforme tra immagini */
-    flex-wrap: nowrap;         /* evita che vadano a capo */
-    overflow-x: auto;          /* scroll orizzontale se tante immagini */
-    max-width: 900px;
-    margin: 0 auto;
+	display: flex;
+	justify-content: center; /* centra le immagini tutte in fila */
+	gap: 1rem; /* spazio uniforme tra immagini */
+	flex-wrap: nowrap; /* evita che vadano a capo */
+	overflow-x: auto; /* scroll orizzontale se tante immagini */
+	max-width: 900px;
+	margin: 0 auto;
 }
 
 .gallery img {
-    width: 270px;   
-    height: 450px;  
-    object-fit: cover;
-    border-radius: 1rem;
-    border: 2px solid var(--purple);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    display: block;
-    flex-shrink: 0;
-    cursor: pointer;
+	width: 270px;
+	height: 450px;
+	object-fit: cover;
+	border-radius: 1rem;
+	border: 2px solid var(--purple);
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s ease;
+	display: block;
+	flex-shrink: 0;
+	cursor: pointer;
 }
-
-.gallery img:hover {
-    transform: scale(1.03);
-}
-
 
 .no-images {
-    text-align: center;
-    color: white;
-    font-style: italic;
-    padding: 2rem 0;
+	text-align: center;
+	color: white;
+	font-style: italic;
+	padding: 2rem 0;
 }
 
 .reviews-container {
-	margin-top: 1rem;
-    max-width: 900px;
-    margin: 0 auto 3rem auto; /* centra e margine sotto */
-    padding: 1rem 2rem;
-    background-color: var(--dark-lavender);
-    border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-    color: var(--purple);
+	max-width: 900px;
+	margin: 1rem auto 3rem auto; /* centra e margine sotto */
+	padding: 1rem 2rem;
+	background-color: var(--dark-lavender);
+	border-radius: 1rem;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+	color: var(--purple);
 }
 
 .reviews-container h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--purple);
+	text-align: center;
+	margin-bottom: 2rem;
+	color: var(--purple);
 }
 
 .reviews-container ul {
-    list-style: none;
-    padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 .reviews-container li {
-    background-color: var(--dark-lavender);
-    border: 1px solid var(--purple);
-    border-radius: 1rem;
-    padding: 1rem 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
-    color: var(--purple);
+	background-color: var(--dark-lavender);
+	border: 1px solid var(--purple);
+	border-radius: 1rem;
+	padding: 1rem 1.5rem;
+	margin-bottom: 1.5rem;
+	box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+	color: var(--purple);
 }
 
 .reviews-container h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
 }
 
 .reviews-container p {
-    margin: 0.25rem 0;
+	margin: 0.25rem 0;
 }
 
 .reviews-container a {
-    color: var(--purple);
-    text-decoration: underline;
+	color: var(--purple);
+	text-decoration: underline;
 }
 
 .reviews-container a:hover {
-    color: var(--light-lavender);
+	color: var(--light-lavender);
 }
 
+.MAD-BUTTON {
+	display: inline-block;
+	background-color: #d9534f;
+	color: white;
+	border: 1px solid #b94a48;
+	padding: 1em 2em;
+	font-weight: bold;
+	font-size: 1.1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+	text-decoration: none; /* se fosse un <a> */
+	text-align: center;
+	margin: 1rem 1rem;
+}
+
+.MAD-BUTTON:hover {
+	background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+.MAD-BUTTON:focus {
+	outline: none;
+    box-shadow: 0 0 5px 2px rgba(217, 83, 79, 0.7);
+	/* effetto glow rosso */
+}
+
+/* Container per centrare il bottone */
+.MAD-BUTTON-container {
+    text-align: center;
+    margin-top: 0;
+}

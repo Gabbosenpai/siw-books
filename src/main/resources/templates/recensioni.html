@@ -4,46 +4,54 @@
     <meta charset="UTF-8">
     <title>Lista Recensioni</title>
     <link rel="stylesheet" th:href="@{/css/recensioni.css}" />
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <a href="/"><img src="/images/Siw-Books-Cut-Logo.png" width="70" alt="Logo" /></a>
+        <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" title="Home">
+                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" width="70" height="70" />
+            </a>
+            <a href="/libro">Books</a>
+            <a href="/autore">Authors</a>
+            <a href="/recensione">Reviews</a>
         </div>
 
-        <div class="user-area" th:if="${userDetails}">
-            <a class="username" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
-            <a href="/logout">Logout</a>
+        <div class="user-block" th:if="${userDetails}">
+            <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a class="logout-link" href="/logout">Logout</a>
         </div>
 
-        <div class="user-area" th:unless="${userDetails}">
-            <a href="/login">Login</a>
+        <div class="user-block" th:unless="${userDetails}">
+            <a class="login-link" href="/login">Login</a>
         </div>
+    </nav>
     </header>
 
-    <h1>All Reviews</h1>
+    <h1>Reviews</h1>
 
     <table>
         <thead>
             <tr>
                 <th th:if="${role == 'ADMIN'}">ID</th>
+                <th>Book</th>
                 <th>Title</th>
                 <th>Text</th>
                 <th>Rating</th>
-                <th>Book</th>
                 <th>Reviewer</th>
-                <th th:if="${role == 'ADMIN'}">Azioni</th>
+                <th th:if="${role == 'ADMIN'}">Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="rec : ${recensioni}">
                 <td th:if="${role == 'ADMIN'}" th:text="${rec.id}">1</td>
-                <td th:text="${rec.title}">Titolo recensione</td>
-                <td th:text="${rec.text}">Testo recensione</td>
-                <td th:text="${rec.rating + '/5'}">5</td>
                 <td>
                     <a th:href="@{/libro/{id}(id=${rec.libro.id})}" th:text="${rec.libro.title}">Titolo Libro</a>
                 </td>
+                <td th:text="${rec.title}">Titolo recensione</td>
+                <td th:text="${rec.text}">Testo recensione</td>
+                <td th:text="${rec.rating + '/5'}">5</td>
                 <td>
                     <a th:href="@{/recensione/{username}/recensioni(username=${rec.autore.credentials.username})}" th:text="${rec.autore.nickname}">autore</a>
                 </td>

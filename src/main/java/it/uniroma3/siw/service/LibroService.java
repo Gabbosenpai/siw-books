@@ -30,4 +30,8 @@ public class LibroService {
 	public Libro getLibroByTitle(String title) {
 		return this.libroRepository.findByTitle(title);
 	}
+	
+	public void deleteLibroById(Long id) {
+		this.libroRepository.deleteById(id);
+	}
 }

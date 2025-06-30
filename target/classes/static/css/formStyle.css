@@ -15,66 +15,6 @@ body {
     color: var(--text-dark);
 }
 
-/* HEADER & NAVBAR */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--dark-lavender);
-    box-sizing: border-box;
-}
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-}
-.nav-links a:first-child img.logo {
-    width: 20em;
-    height: auto;
-    display: block;
-}
-.nav-links a:not(:first-child) {
-    text-decoration: none;
-    color: var(--purple);
-    font-weight: bold;
-    font-size: 1.4rem;
-    transition: color 0.3s ease;
-}
-.nav-links a:not(:first-child):hover {
-    color: var(--light-lavender);
-    text-shadow: 1px 1px 2px var(--purple-light);
-}
-.user-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-.username-pill {
-    background-color: var(--purple);
-    color: var(--light-lavender);
-    padding: 6px 15px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-.username-pill:hover {
-    background-color: var(--purple-light);
-}
-.logout-link, .login-link {
-    color: var(--light-lavender);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-.logout-link:hover, .login-link:hover {
-    color: var(--purple-light);
-}
-
 /* PAGE TITLES */
 h1.page-title {
     color: var(--purple);

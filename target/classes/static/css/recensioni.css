@@ -3,38 +3,21 @@
 	--dark-lavender: #8D5EB7;
 	--purple: #6A0DAD;
 	--purple-light: #8C33C6;
+	--text-dark: #3D065F;
 }
 
 body {
 	font-family: sans-serif;
 	background-color: #BA87DE;
 	margin: 0;
-	padding: 20px;
-}
-
-header {
-	background-color: var(--dark-lavender);
-	color: white;
-	padding: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-header .logo img {
-	vertical-align: middle;
-	width: 20rem;
-}
-
-header .user-area a {
-	color: var(--purple);
-	margin-left: 15px;
-	text-decoration: none;
-	font-weight: bold;
+	padding: 0;
 }
 
 h1 {
 	color: var(--purple);
+	text-align: center;
+    font-size: 2rem;
+    color: var(--text-dark);
 }
 
 table {
@@ -52,6 +35,9 @@ th, td {
 
 td {
     color: var(--purple-light);
+    word-break: break-word;
+    max-width: 200px;
+    white-space: normal;
 }
 
 th {
@@ -60,7 +46,7 @@ th {
 }
 
 tr:nth-child(even) {
-	background-color: #d9c3e6;
+	background-color: #d6b2eb;
 }
 
 a {

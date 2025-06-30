@@ -1,72 +1,105 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title th:text="${libro.title} + ' - Dettaglio Libro'">Book
-	Details</title>
-<link rel="stylesheet" href="/css/libro.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title th:text="${libro.title} + ' - Dettaglio Libro'">Book Details</title>
+  <link rel="stylesheet" href="/css/libro.css" />
+  <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
 
-	<div class="libro-container" th:object="${libro}">
-		<h1 th:text="*{title}">Book Title</h1>
+<header>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" title="Home">
+                <img src="/images/Siw-Books-Cut-Logo.png" alt="logo" class="logo" width="70" height="70" />
+            </a>
+            <a href="/libro">Books</a>
+            <a href="/autore">Authors</a>
+            <a href="/recensione">Reviews</a>
+        </div>
 
-		<div class="info">
-			<p>
-				<span class="label">Authors:</span> <span
-					th:if="*{listaAutori != null and !#lists.isEmpty(listaAutori)}">
-					<span th:each="autore, iterStat : *{listaAutori}"> <span
-						th:text="${autore.firstName + ' ' + autore.lastName}">Nome
-							Autore</span> <span th:if="${!iterStat.last}">, </span>
-				</span>
-				</span> <span th:if="*{listaAutori == null or #lists.isEmpty(listaAutori)}">
-					Nessun autore associato </span>
-			</p>
-			<p>
-				<span class="label">Year:</span> <span th:text="*{year}">2023</span>
-			</p>
-		</div>
+        <div class="user-block" th:if="${userDetails}">
+            <a class="username-pill" th:href="@{'/recensione/' + ${userDetails.username} + '/recensioni'}" th:text="${nickname}"></a>
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
 
-		<div class="gallery"
-			th:if="*{listaImmagini != null and !#lists.isEmpty(listaImmagini)}">
-			<img th:each="img : *{listaImmagini}"
-				th:src="@{'/images-db-libro/' + ${img.id}}"
-				th:alt="'Immagine di ' + *{title}" />
-		</div>
-		<div class="no-images"
-			th:if="*{listaImmagini == null or #lists.isEmpty(listaImmagini)}">
-			Nessuna immagine disponibile per questo libro.</div>
-	</div>
-	<div class="reviews-container">
-	<h1>Reviews</h1>
+        <div class="user-block" th:unless="${userDetails}">
+            <a class="login-link" href="/login">Login</a>
+        </div>
+    </nav>
+</header>
 
-	<h2 th:if="${haGiaRecensito}">You have already left a review,
-		thank you!</h2>
-	<h2 th:unless="${haGiaRecensito}">
-		<a th:href="@{'/libro/' + ${libro.id} + '/formNewRecensione'}">Leave
-			a review!</a>
-	</h2>
+<div class="libro-container" th:object="${libro}">
+    <h1 th:text="*{title}">Book Title</h1>
 
-	<div
-		th:if="${libro.listaRecensioni == null || libro.listaRecensioni.isEmpty()}">
-		No reviews yet...</div>
-
-	<ul>
-    <li th:each="recensione : ${libro.listaRecensioni}" style="margin-bottom: 1.5rem;">
-
-        <h3 th:text="${recensione.title +' (' +recensione.rating + ' / 5)'}">Review Title</h3>
-
-        <p th:text="${recensione.text}">Review text...</p>
-
+    <div class="info">
         <p>
-            Written by: 
-            <a th:href="@{/recensione/{username}/recensioni(username=${recensione.autore.credentials.username})}"
-               th:text="${recensione.autore.nickname}">Author Name</a>
+            <span class="label">Authors:</span> 
+            <span th:if="*{listaAutori != null and !#lists.isEmpty(listaAutori)}">
+                <span th:each="autore, iterStat : *{listaAutori}">
+                    <span th:text="${autore.firstName + ' ' + autore.lastName}">Nome Autore</span>
+                    <span th:if="${!iterStat.last}">, </span>
+                </span>
+            </span>
+            <span th:if="*{listaAutori == null or #lists.isEmpty(listaAutori)}">
+                Nessun autore associato
+            </span>
         </p>
+        <p>
+            <span class="label">Year:</span> 
+            <span th:text="*{year}">2023</span>
+        </p>
+    </div>
 
-    </li>
-</ul>
+    <div class="gallery" th:if="*{listaImmagini != null and !#lists.isEmpty(listaImmagini)}">
+        <img th:each="img : *{listaImmagini}"
+             th:src="@{'/images-db-libro/' + ${img.id}}"
+             th:alt="'Immagine di ' + *{title}" />
+    </div>
+    <div class="no-images" th:if="*{listaImmagini == null or #lists.isEmpty(listaImmagini)}">
+        Nessuna immagine disponibile per questo libro.
+    </div>
+</div>
+
+<div th:if="${role == 'ADMIN'}" class="MAD-BUTTON-container">
+    <form th:action="@{'/libro/' + ${libro.id} + '/delete'}" method="post">
+        <button 
+            type="submit" 
+            class="MAD-BUTTON"
+            onclick="return confirm('This Book will be gone for good, are you sure?');">
+            Delete Book
+        </button>
+    </form>
+</div>
+
+<div class="reviews-container">
+    <h1>Reviews</h1>
+
+    <h2 th:if="${haGiaRecensito}">
+        You have already left a review, thank you!
+    </h2>
+    <h2 th:unless="${haGiaRecensito}">
+        <a th:href="@{'/libro/' + ${libro.id} + '/formNewRecensione'}">Leave a review!</a>
+    </h2>
+
+    <div th:if="${libro.listaRecensioni == null || libro.listaRecensioni.isEmpty()}">
+        No reviews yet...
+    </div>
+
+    <ul>
+        <li th:each="recensione : ${libro.listaRecensioni}" style="margin-bottom: 1.5rem;">
+            <h3 th:text="${recensione.title +' (' +recensione.rating + ' / 5)'}">Review Title</h3>
+            <p th:text="${recensione.text}">Review text...</p>
+            <p>
+                Written by:
+                <a th:href="@{/recensione/{username}/recensioni(username=${recensione.autore.credentials.username})}"
+                   th:text="${recensione.autore.nickname}">Author Name</a>
+            </p>
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>
